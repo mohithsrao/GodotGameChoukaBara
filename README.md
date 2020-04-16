@@ -1,5 +1,5 @@
 # GodotGameUno
-First game in Godot to learn teh engine and create some game mechanics.
+First game in Godot to learn the engine and create some game mechanics.
 
 The game to be created is an old indian board game called Chouka-Bara 
 
