@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Player/L.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/ryuk.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 39.6708, 55.077 )
+extents = Vector2( 23.6279, 32.3454 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "down"
-length = 1.2
+length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -16,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 0 ]
@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "left"
-length = 1.2
+length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -32,7 +32,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 5, 6, 7, 4 ]
@@ -40,7 +40,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "right"
-length = 1.2
+length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -48,7 +48,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 9, 10, 11, 8 ]
@@ -56,7 +56,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "up"
-length = 1.2
+length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -64,7 +64,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 13, 14, 15, 12 ]
