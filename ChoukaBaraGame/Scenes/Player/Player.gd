@@ -5,8 +5,8 @@ onready var ray = $RayCast2D
 onready var animationPlayer = $AnimationPlayer
 
 export var speed = 3
+export var tile_size = 64
 
-var tile_size = 64
 var inputs = {"right": Vector2.RIGHT,
 			"left": Vector2.LEFT,
 			"up": Vector2.UP,
