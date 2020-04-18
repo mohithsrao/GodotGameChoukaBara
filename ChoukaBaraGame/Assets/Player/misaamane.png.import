@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/female_tilesheet.png-e6ee6dacca81cc3c37e45b3bb9b3912f.stex"
+path="res://.import/misaamane.png-fee605bb185d0c13c9b0b7dba69cd9b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/female_tilesheet.png"
-dest_files=[ "res://.import/female_tilesheet.png-e6ee6dacca81cc3c37e45b3bb9b3912f.stex" ]
+source_file="res://Assets/Player/misaamane.png"
+dest_files=[ "res://.import/misaamane.png-fee605bb185d0c13c9b0b7dba69cd9b9.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/adventurer_tilesheet.png-96ca42404088fcbd5b156a251fcf8772.stex"
+path="res://.import/L.png-1707b5e86e2916fa57efded1631af9dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/adventurer_tilesheet.png"
-dest_files=[ "res://.import/adventurer_tilesheet.png-96ca42404088fcbd5b156a251fcf8772.stex" ]
+source_file="res://Assets/Player/L.png"
+dest_files=[ "res://.import/L.png-1707b5e86e2916fa57efded1631af9dc.stex" ]
 
 [params]
 
