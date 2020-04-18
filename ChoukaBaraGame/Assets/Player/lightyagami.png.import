@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/soldier_tilesheet.png-9b26ef4962b34942f9768b47074ec838.stex"
+path="res://.import/lightyagami.png-03b9f00e1d197e7eccb41b607b6c2137.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/soldier_tilesheet.png"
-dest_files=[ "res://.import/soldier_tilesheet.png-9b26ef4962b34942f9768b47074ec838.stex" ]
+source_file="res://Assets/Player/lightyagami.png"
+dest_files=[ "res://.import/lightyagami.png-03b9f00e1d197e7eccb41b607b6c2137.stex" ]
 
 [params]
 
