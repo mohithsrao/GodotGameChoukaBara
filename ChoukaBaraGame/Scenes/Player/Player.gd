@@ -4,17 +4,28 @@ onready var tween = $Tween
 onready var ray = $RayCast2D
 onready var animationPlayer = $AnimationPlayer
 
-export var speed = 3
+export var speed = 2
+export var tile_size = 192
+export(int,"One","Two","Three","Four") var initial_position
 
-var tile_size = 64
 var inputs = {"right": Vector2.RIGHT,
 			"left": Vector2.LEFT,
 			"up": Vector2.UP,
 			"down": Vector2.DOWN}
+var initialPosition = {
+	 0: { "x_offset": 1,"y_offset":1 }
+	,1: { "x_offset": 1,"y_offset":2 }
+	,2: { "x_offset": 2,"y_offset":1 }
+	,3: { "x_offset": 2,"y_offset":2 }
+}
 
 func _ready():
+	initialSetup()
+	
+func initialSetup():
 	position = position.snapped(Vector2.ONE*tile_size)
-	position += Vector2.ONE * tile_size / 2
+	position.y += (tile_size / 3) * initialPosition[initial_position].y_offset
+	position.x += (tile_size / 3) * initialPosition[initial_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
 	
@@ -34,8 +45,14 @@ func move(dir):
 		animationPlayer.play(dir)
 		move_tween(inputs[dir])
 	
-func move_tween(dir):
-	tween.interpolate_property(self,"position",position,position + dir * tile_size, 1.0/speed,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
+func move_tween(dirVector):
+	tween.interpolate_property(self
+					,"position"
+					,position
+					,position + dirVector * tile_size
+					,1.0/speed
+					,Tween.TRANS_LINEAR
+					,Tween.EASE_IN_OUT)
 	tween.start()
 
 	

@@ -16,12 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="ChoukaBaraGame"
-run/main_scene="res://Scenes/Player/Player.tscn"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/resizable=false
+window/size/width=960
+window/size/height=960
+window/size/always_on_top=true
 
 [input]
 
