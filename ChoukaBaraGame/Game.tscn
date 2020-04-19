@@ -17,5 +17,13 @@ region_rect = Rect2( 0, 0, 960, 960 )
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-tile_size = 192
+
+[node name="Player2" parent="." instance=ExtResource( 3 )]
+initial_position = 1
+
+[node name="Player3" parent="." instance=ExtResource( 3 )]
+initial_position = 2
+
+[node name="Player4" parent="." instance=ExtResource( 3 )]
+initial_position = 3
 
