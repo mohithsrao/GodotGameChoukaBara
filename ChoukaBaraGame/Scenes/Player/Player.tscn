@@ -97,9 +97,3 @@ anims/left = SubResource( 3 )
 anims/right = SubResource( 4 )
 anims/up = SubResource( 5 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-drag_margin_left = 0.5
-drag_margin_top = 0.5
-drag_margin_right = 0.5
-drag_margin_bottom = 0.5
-
