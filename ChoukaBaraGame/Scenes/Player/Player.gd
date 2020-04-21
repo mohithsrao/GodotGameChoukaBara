@@ -4,9 +4,9 @@ onready var tween = $Tween
 onready var ray = $RayCast2D
 onready var animationPlayer = $AnimationPlayer
 
-export var speed = 2
-export var tile_size = 192
-export(int,"One","Two","Three","Four") var initial_position
+var speed = 2
+var tile_size = 192
+var initial_character_position
 
 var inputs = {"right": Vector2.RIGHT,
 			"left": Vector2.LEFT,
@@ -19,15 +19,16 @@ var initialPosition = {
 	,3: { "x_offset": 2,"y_offset":2 }
 }
 
-func _ready():
-	initialSetup()
-	
-func initialSetup():
-	position = position.snapped(Vector2.ONE*tile_size)
-	position.y += (tile_size / 3) * initialPosition[initial_position].y_offset
-	position.x += (tile_size / 3) * initialPosition[initial_position].x_offset
+func _ready():	
+	position.y += (tile_size / 3) * initialPosition[initial_character_position].y_offset
+	position.x += (tile_size / 3) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
+	
+func initialSetup(speed,tileSize,initial_character_position):
+	self.speed = speed
+	self.tile_size = tileSize
+	self.initial_character_position = initial_character_position	
 	
 func _process(delta):
 	# use this if you want to only move on keypress
