@@ -4,6 +4,8 @@ onready var tween = $Tween
 onready var ray = $RayCast2D
 onready var animationPlayer = $AnimationPlayer
 
+signal character_selected
+
 var speed = 2
 var tile_size = 192
 var initial_character_position
@@ -24,11 +26,11 @@ func _ready():
 	position.x += (tile_size / 3) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
-	
-func initialSetup(speed,tileSize,initial_character_position):
-	self.speed = speed
-	self.tile_size = tileSize
-	self.initial_character_position = initial_character_position	
+
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == BUTTON_LEFT:
+			emit_signal("character_selected",self)
 	
 func _process(delta):
 	# use this if you want to only move on keypress
@@ -56,4 +58,8 @@ func move_tween(dirVector):
 					,Tween.EASE_IN_OUT)
 	tween.start()
 
+func initialSetup(speed,tileSize,initial_character_position):
+	self.speed = speed
+	self.tile_size = tileSize
+	self.initial_character_position = initial_character_position	
 	
