@@ -1,14 +1,15 @@
 extends Area2D
 
-onready var tween = $Tween
-onready var ray = $RayCast2D
-onready var animationPlayer = $AnimationPlayer
+onready var tween : = $Tween
+onready var ray : = $RayCast2D
+onready var animationPlayer : = $AnimationPlayer
 
 signal character_selected
 
-var speed = 2
-var tile_size = 192
-var initial_character_position
+var speed : = 2
+var tile_size : = 192
+var initial_character_position : int
+var navigationPath: = PoolVector2Array() setget set_navigationPath
 
 var inputs = {"right": Vector2.RIGHT,
 			"left": Vector2.LEFT,
@@ -21,7 +22,8 @@ var initialPosition = {
 	,3: { "x_offset": 2,"y_offset":2 }
 }
 
-func _ready():	
+func _ready():
+	set_process(false)	
 	position.y += (tile_size / 3) * initialPosition[initial_character_position].y_offset
 	position.x += (tile_size / 3) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
@@ -37,18 +39,31 @@ func _process(delta):
 	# func _unhandled_input(event):
 	if tween.is_active():
 		return
-	for dir in inputs.keys():
-		if Input.is_action_pressed(dir):
-			move(dir)
+	
+	var distance_to_next_point = position.distance_to(navigationPath[0])
+	if(sqrt(2*tile_size) >= distance_to_next_point):
+		navigationPath.remove(0)
+	else:
+		var angleToDestination : = position.angle_to_point(navigationPath[0])
+#		if(angleToDestination >= 0 and angleToDestination <= 90)
+#	for dir in inputs.keys():
+#		if Input.is_action_pressed(dir):
+#			move(dir)
+
+func set_navigationPath(value:PoolVector2Array) -> void:
+	navigationPath = value
+	if(value.size() == 0):
+		return
+	set_process(true)
 		
-func move(dir):
+func move(dir : String) -> void:
 	ray.cast_to = inputs[dir] * tile_size
 	ray.force_raycast_update()
 	if !ray.is_colliding():
 		animationPlayer.play(dir)
 		move_tween(inputs[dir])
 	
-func move_tween(dirVector):
+func move_tween(dirVector : Vector2) -> void:
 	tween.interpolate_property(self
 					,"position"
 					,position
@@ -58,7 +73,7 @@ func move_tween(dirVector):
 					,Tween.EASE_IN_OUT)
 	tween.start()
 
-func initialSetup(speed,tileSize,initial_character_position):
+func initialSetup(speed,tileSize,initial_character_position) -> void:
 	self.speed = speed
 	self.tile_size = tileSize
 	self.initial_character_position = initial_character_position	

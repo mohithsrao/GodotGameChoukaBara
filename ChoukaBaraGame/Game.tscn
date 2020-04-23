@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Japaneese_Village_Background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/PlayerSpawner.gd" type="Script" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 30, 930, 30, 420, 160, 420, 160, 800, 930, 930, 800, 800, 930, 30, 800, 160, 30, 30, 160, 160, 30, 350, 160, 230, 610, 350, 730, 230, 730, 740, 610, 610, 230, 740, 350, 610, 230, 420, 350, 540, 540, 420, 540, 540 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 6, 4, 5, 7 ), PoolIntArray( 8, 6, 7, 9 ), PoolIntArray( 10, 8, 9, 11 ), PoolIntArray( 12, 10, 11, 13 ), PoolIntArray( 12, 13, 14, 15 ), PoolIntArray( 15, 14, 16, 17 ), PoolIntArray( 17, 16, 18, 19 ), PoolIntArray( 19, 18, 20, 21 ) ]
+outlines = [ PoolVector2Array( 30, 420, 160, 420, 160, 800, 800, 800, 800, 160, 160, 160, 160, 230, 730, 230, 730, 740, 230, 740, 230, 420, 540, 420, 540, 540, 350, 540, 350, 610, 610, 610, 610, 350, 30, 350, 30, 30, 930, 30, 930, 930, 30, 930 ) ]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,3 +25,11 @@ region_rect = Rect2( 0, 0, 960, 960 )
 
 [node name="PlayerSpawner" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
