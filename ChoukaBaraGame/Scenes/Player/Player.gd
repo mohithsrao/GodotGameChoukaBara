@@ -39,16 +39,22 @@ func _process(delta):
 	# func _unhandled_input(event):
 	if tween.is_active():
 		return
-	
-	var distance_to_next_point = position.distance_to(navigationPath[0])
-	if(sqrt(2*tile_size) >= distance_to_next_point):
-		navigationPath.remove(0)
+	if(navigationPath.size() > 0):
+		var distance_to_next_point = global_position.distance_to(navigationPath[0])
+		if(distance_to_next_point <= tile_size):
+			navigationPath.remove(0)
+		else:
+			var angleToDestination : = global_position.angle_to_point(navigationPath[0])
+			if(angleToDestination < PI/4.0 and angleToDestination >= -PI/4.0):
+				move("right")
+			if(angleToDestination < -PI/4.0 and angleToDestination >= -3*PI/4.0):
+				move("down")
+			if(angleToDestination < 3*PI/4.0 and angleToDestination >= PI/4.0):
+				move("up")
+			if(angleToDestination < -3 * PI/4.0 and angleToDestination >= 3*PI/4.0):
+				move("left")
 	else:
-		var angleToDestination : = position.angle_to_point(navigationPath[0])
-#		if(angleToDestination >= 0 and angleToDestination <= 90)
-#	for dir in inputs.keys():
-#		if Input.is_action_pressed(dir):
-#			move(dir)
+		set_process(false)
 
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value
