@@ -1,15 +1,16 @@
 extends Node2D
 
 var selectedCharacter
-var tile_size = 192
+var tile_size : = 192
 
-onready var playerSpawnerInstance = $PlayerSpawner
+onready var playerSpawnerInstance : = $PlayerSpawner
 
-func _ready():
+func _ready() -> void:
 	for character in playerSpawnerInstance.get_children():
 		character.connect("character_selected",self,"_on_character_selected")
+		character.connect("character_unselected",self,"_on_character_unselected")
 
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventMouseButton and selectedCharacter != null:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			var path = $Navigation2D.get_simple_path(selectedCharacter.position, event.position)
@@ -30,5 +31,9 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 	
 	return resultArray
 	 
-func _on_character_selected(character):
+func _on_character_selected(character) -> void:
 	selectedCharacter = character
+
+func _on_character_unselected() -> void:
+	selectedCharacter = null
+	$Line2D.clear_points()

@@ -25,6 +25,7 @@ region_rect = Rect2( 0, 0, 960, 960 )
 
 [node name="PlayerSpawner" type="Node" parent="."]
 script = ExtResource( 3 )
+player_index = 1
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 

@@ -5,6 +5,7 @@ onready var ray : = $RayCast2D
 onready var animationPlayer : = $AnimationPlayer
 
 signal character_selected
+signal character_unselected
 
 var speed : = 2
 var tile_size : = 192
@@ -24,8 +25,8 @@ var initialPosition = {
 
 func _ready():
 	set_process(false)	
-	position.y += (tile_size / 3) * initialPosition[initial_character_position].y_offset
-	position.x += (tile_size / 3) * initialPosition[initial_character_position].x_offset
+	position.y += (tile_size / 3.0) * initialPosition[initial_character_position].y_offset
+	position.x += (tile_size / 3.0) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
 
@@ -41,20 +42,21 @@ func _process(delta):
 		return
 	if(navigationPath.size() > 0):
 		var distance_to_next_point = global_position.distance_to(navigationPath[0])
-		if(distance_to_next_point <= tile_size):
+		if(distance_to_next_point <= tile_size/2.0):
 			navigationPath.remove(0)
 		else:
-			var angleToDestination : = global_position.angle_to_point(navigationPath[0])
-			if(angleToDestination < PI/4.0 and angleToDestination >= -PI/4.0):
-				move("right")
-			if(angleToDestination < -PI/4.0 and angleToDestination >= -3*PI/4.0):
-				move("down")
-			if(angleToDestination < 3*PI/4.0 and angleToDestination >= PI/4.0):
-				move("up")
-			if(angleToDestination < -3 * PI/4.0 and angleToDestination >= 3*PI/4.0):
+			var angleToDestination : = rad2deg(global_position.angle_to_point(navigationPath[0]))
+			if(angleToDestination < 45 and angleToDestination >= - 45):
 				move("left")
+			if(angleToDestination < - 45 and angleToDestination >= - 45 * 3):
+				move("down")
+			if(angleToDestination < - 45 * 3 or angleToDestination >= 45 * 3):
+				move("right")
+			if(angleToDestination < 45 * 3 and angleToDestination >= 45):
+				move("up")
 	else:
 		set_process(false)
+		emit_signal("character_unselected")
 
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value
@@ -79,8 +81,8 @@ func move_tween(dirVector : Vector2) -> void:
 					,Tween.EASE_IN_OUT)
 	tween.start()
 
-func initialSetup(speed,tileSize,initial_character_position) -> void:
-	self.speed = speed
+func initialSetup(localSpeed,tileSize,local_initial_character_position) -> void:
+	self.speed = localSpeed
 	self.tile_size = tileSize
-	self.initial_character_position = initial_character_position	
+	self.initial_character_position = local_initial_character_position	
 	
