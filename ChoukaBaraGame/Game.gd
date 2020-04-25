@@ -24,8 +24,8 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		var modValueX = floor(point.x / (tile_size))
 		var modValueY = floor(point.y / (tile_size))
 		var newPoint = Vector2(
-			 (modValueX * (tile_size)) + (tile_size / 2)
-			,(modValueY * (tile_size)) + (tile_size / 2))
+			 (modValueX * (tile_size)) + (tile_size / 2.0)
+			,(modValueY * (tile_size)) + (tile_size / 2.0))
 		
 		resultArray.append(newPoint)
 	

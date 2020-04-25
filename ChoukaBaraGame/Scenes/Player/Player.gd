@@ -34,6 +34,7 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == BUTTON_LEFT:
 			emit_signal("character_selected",self)
+			$Sprite.scale = Vector2(1.5,1.5)
 	
 func _process(delta):
 	# use this if you want to only move on keypress
@@ -57,6 +58,7 @@ func _process(delta):
 	else:
 		set_process(false)
 		emit_signal("character_unselected")
+		$Sprite.scale = Vector2(1,1)
 
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value
