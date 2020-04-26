@@ -14,7 +14,8 @@ outlines = [ PoolVector2Array( 30, 420, 160, 420, 160, 800, 800, 800, 800, 160, 
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -473.964, -479.296 )
+position = Vector2( -480, -480 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( 480, 480 )
