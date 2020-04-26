@@ -14,13 +14,13 @@ outlines = [ PoolVector2Array( 30, 420, 160, 420, 160, 800, 800, 800, 800, 160, 
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -480, -480 )
+position = Vector2( -512, -512 )
 scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( 480, 480 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 960, 960 )
+region_rect = Rect2( 0, 0, 1024, 1024 )
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 

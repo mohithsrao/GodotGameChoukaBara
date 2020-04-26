@@ -1,14 +1,15 @@
 extends Area2D
 
-onready var tween : = $Tween
-onready var ray : = $RayCast2D
-onready var animationPlayer : = $AnimationPlayer
+onready var tween : Tween = $Tween
+onready var ray : RayCast2D = $RayCast2D
+onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+onready var sprite : Sprite = $Sprite
 
 signal character_selected
 signal character_unselected
 
-var speed : = 2
-var tile_size : = 192
+var speed : int = 2
+var tile_size : int = 192
 var initial_character_position : int
 var navigationPath: = PoolVector2Array() setget set_navigationPath
 
@@ -30,13 +31,13 @@ func _ready():
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
 
-func _input_event(viewport, event, shape_idx):
+func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == BUTTON_LEFT:
 			emit_signal("character_selected",self)
-			$Sprite.scale = Vector2(1.5,1.5)
+			sprite.scale = Vector2(1.5,1.5)
 	
-func _process(delta):
+func _process(_delta):
 	# use this if you want to only move on keypress
 	# func _unhandled_input(event):
 	if tween.is_active():
@@ -58,7 +59,7 @@ func _process(delta):
 	else:
 		set_process(false)
 		emit_signal("character_unselected")
-		$Sprite.scale = Vector2(1,1)
+		sprite.scale = Vector2(1,1)
 
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value

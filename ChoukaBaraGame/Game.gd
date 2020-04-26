@@ -7,32 +7,36 @@ onready var playerSpawnerOneInstance : = $PlayerSpawnerOne
 onready var playerSpawnerTwoInstance : = $PlayerSpawnerTwo
 onready var playerSpawnerThreeInstance : = $PlayerSpawnerThree
 onready var playerSpawnerFourInstance : = $PlayerSpawnerFour
+onready var line : Line2D = $Line2D
 
 func _ready() -> void:
-	for character in playerSpawnerOneInstance.get_children():
-		character.connect("character_selected",self,"_on_character_selected")
-		character.connect("character_unselected",self,"_on_character_unselected")
-	for character in playerSpawnerTwoInstance.get_children():
-		character.connect("character_selected",self,"_on_character_selected")
-		character.connect("character_unselected",self,"_on_character_unselected")
-	for character in playerSpawnerThreeInstance.get_children():
-		character.connect("character_selected",self,"_on_character_selected")
-		character.connect("character_unselected",self,"_on_character_unselected")
-	for character in playerSpawnerFourInstance.get_children():
-		character.connect("character_selected",self,"_on_character_selected")
-		character.connect("character_unselected",self,"_on_character_unselected")
+	for childNode in playerSpawnerOneInstance.get_children():
+		connectToUserSignals(childNode)
+	for childNode in playerSpawnerTwoInstance.get_children():
+		connectToUserSignals(childNode)
+	for childNode in playerSpawnerThreeInstance.get_children():
+		connectToUserSignals(childNode)
+	for childNode in playerSpawnerFourInstance.get_children():
+		connectToUserSignals(childNode)
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventMouseButton and selectedCharacter != null:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		var inpEvent : InputEventMouseButton = event as InputEventMouseButton
+		if inpEvent.button_index == BUTTON_LEFT and inpEvent.pressed:
 			var navigationInstance = getNavigationInstanceforSelectedCharactor(selectedCharacter)
-			var path = navigationInstance.get_simple_path(selectedCharacter.position, event.position)
+			var path = navigationInstance.get_simple_path(selectedCharacter.position, inpEvent.position)
 			var normalizedPath = normalizeNavigationPath(path)
 			selectedCharacter.navigationPath = normalizedPath
-			$Line2D.points = normalizedPath
+			line.points = normalizedPath
 
-func getNavigationInstanceforSelectedCharactor(selectedCharacter):
-	var navigationInstance = selectedCharacter.get_node("../Navigation2D")
+func connectToUserSignals(node:Node2D) -> void:
+	if(node.has_user_signal("character_selected")):
+		node.connect("character_selected",self,"_on_character_selected")
+	if(node.has_user_signal("character_unselected")):
+		node.connect("character_unselected",self,"_on_character_unselected")
+
+func getNavigationInstanceforSelectedCharactor(character):
+	var navigationInstance = character.get_node("../Navigation2D")
 	return navigationInstance
 
 
@@ -54,4 +58,4 @@ func _on_character_selected(character) -> void:
 
 func _on_character_unselected() -> void:
 	selectedCharacter = null
-	$Line2D.clear_points()
+	line.clear_points()
