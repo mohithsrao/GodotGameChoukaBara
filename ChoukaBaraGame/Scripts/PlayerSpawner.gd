@@ -18,6 +18,7 @@ func _ready():
 	for playerIndex in range(0,maxCharactersPerPlayer):
 		var character = playerScene.instance()
 		(character.get_node("Sprite") as Sprite).texture = playerDetails[player_index].texture
+		character.name =  "Player_" + str(player_index) + "_" + str(playerIndex)
 		character.initialSetup(speed,tile_size,playerIndex)
 		character.position = character.position.snapped(Vector2.ONE * tile_size)
 		character.position.y = tile_size * playerDetails[player_index].y_offset
