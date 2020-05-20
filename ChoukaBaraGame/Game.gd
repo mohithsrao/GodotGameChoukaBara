@@ -30,9 +30,8 @@ func _unhandled_input(event : InputEvent) -> void:
 			line.points = normalizedPath
 
 func connectToUserSignals(node:Node2D) -> void:
-	if(node.has_user_signal("character_selected")):
+	if(node.is_class("Area2D")):
 		node.connect("character_selected",self,"_on_character_selected")
-	if(node.has_user_signal("character_unselected")):
 		node.connect("character_unselected",self,"_on_character_unselected")
 
 func getNavigationInstanceforSelectedCharactor(character):
