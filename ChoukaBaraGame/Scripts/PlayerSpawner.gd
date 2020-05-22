@@ -1,5 +1,7 @@
 extends Node
 
+class_name Player
+
 export var speed = 2
 export var tile_size = 192
 export(int,"One","Two","three","Four") var player_index = 0

@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Pawn
+
 onready var tween : Tween = $Tween
 onready var ray : RayCast2D = $RayCast2D
 onready var animationPlayer : AnimationPlayer = $AnimationPlayer
