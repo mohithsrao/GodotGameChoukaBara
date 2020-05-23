@@ -2,6 +2,8 @@ extends Node
 
 class_name Player
 
+var selectedPawn:Pawn
+
 export var speed = 2
 export var tile_size = 192
 export(int,"One","Two","three","Four") var player_index = 0
@@ -25,4 +27,22 @@ func _ready():
 		character.position = character.position.snapped(Vector2.ONE * tile_size)
 		character.position.y = tile_size * playerDetails[player_index].y_offset
 		character.position.x = tile_size * playerDetails[player_index].x_offset
+		character.connect("character_selected",self,"_on_characterSelected")
+		character.connect("character_unselected",self,"_on_characterUnselected")
 		add_child(character)
+
+#func play_turn():
+	
+
+func _input_event(_viewport, event, _shape_idx):
+	if selectedPawn != null:
+		if event is InputEventMouseButton:
+			if event.pressed and event.button_index == BUTTON_LEFT:
+				emit_signal("character_selected",self)
+				selectedPawn.sprite.scale = Vector2(1.5,1.5)
+	
+func _on_characterSelected(pawn:Pawn):
+	selectedPawn = pawn
+
+func _on_characterUnselected():
+	selectedPawn = null

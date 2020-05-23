@@ -1,40 +1,36 @@
 extends Node2D
 
-var selectedCharacter
+var selectedPlayer:Player
 var tile_size : = 192
 
-onready var playerSpawnerOneInstance : = $PlayerSpawnerOne
-onready var playerSpawnerTwoInstance : = $PlayerSpawnerTwo
-onready var playerSpawnerThreeInstance : = $PlayerSpawnerThree
-onready var playerSpawnerFourInstance : = $PlayerSpawnerFour
+onready var playerSpawnerOneInstance : = $TurnManager/PlayerSpawnerOne
+onready var playerSpawnerTwoInstance : = $TurnManager/PlayerSpawnerTwo
+onready var playerSpawnerThreeInstance : = $TurnManager/PlayerSpawnerThree
+onready var playerSpawnerFourInstance : = $TurnManager/PlayerSpawnerFour
+onready var turnManager: = $TurnManager
 onready var line : Line2D = $Line2D
 
 func _ready() -> void:
-	for childNode in playerSpawnerOneInstance.get_children():
-		connectToUserSignals(childNode)
-	for childNode in playerSpawnerTwoInstance.get_children():
-		connectToUserSignals(childNode)
-	for childNode in playerSpawnerThreeInstance.get_children():
-		connectToUserSignals(childNode)
-	for childNode in playerSpawnerFourInstance.get_children():
-		connectToUserSignals(childNode)
+	var playerSelectedError = turnManager.connect("player_selected",self,"_on_player_selected")
+	if playerSelectedError:
+		print("player_selected failed in Game.gd -> _ready()")
+	var playerUnselectedError =turnManager.connect("player_unselected",self,"_on_player_unselected")
+	if playerUnselectedError:
+		print("player_unselected failed in Game.gd -> _ready()")
+	turnManager.Initilize()
 
 func _unhandled_input(event : InputEvent) -> void:
-	if event is InputEventMouseButton and selectedCharacter != null:
-		var inpEvent : InputEventMouseButton = event as InputEventMouseButton
-		if inpEvent.button_index == BUTTON_LEFT and inpEvent.pressed:
-			var navigationInstance = getNavigationInstanceforSelectedCharactor(selectedCharacter)
-			var path = navigationInstance.get_simple_path(selectedCharacter.position, inpEvent.position)
-			var normalizedPath = normalizeNavigationPath(path)
-			selectedCharacter.navigationPath = normalizedPath
-			line.points = normalizedPath
+	if selectedPlayer != null:
+		if event is InputEventMouseButton and selectedPlayer.selectedPawn != null:
+			var inpEvent : InputEventMouseButton = event as InputEventMouseButton
+			if inpEvent.button_index == BUTTON_LEFT and inpEvent.pressed:
+				var navigationInstance = getNavigationInstanceforSelectedCharactor(selectedPlayer.selectedPawn)
+				var path = navigationInstance.get_simple_path(selectedPlayer.selectedPawn.position, inpEvent.position)
+				var normalizedPath = normalizeNavigationPath(path)
+				selectedPlayer.selectedPawn.navigationPath = normalizedPath
+				line.points = normalizedPath
 
-func connectToUserSignals(node:Node2D) -> void:
-	if(node.is_class("Area2D")):
-		node.connect("character_selected",self,"_on_character_selected")
-		node.connect("character_unselected",self,"_on_character_unselected")
-
-func getNavigationInstanceforSelectedCharactor(character):
+func getNavigationInstanceforSelectedCharactor(character : Pawn) -> Navigation2D:
 	var navigationInstance = character.get_node("../Navigation2D")
 	return navigationInstance
 
@@ -51,10 +47,9 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		resultArray.append(newPoint)
 	
 	return resultArray
-	 
-func _on_character_selected(character) -> void:
-	selectedCharacter = character
 
-func _on_character_unselected() -> void:
-	selectedCharacter = null
-	line.clear_points()
+func _on_player_selected(player: Player) -> void:
+	selectedPlayer = player
+
+func _on_player_unselected() -> void:
+	selectedPlayer = null

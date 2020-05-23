@@ -77,14 +77,14 @@ func move(dir : String) -> void:
 		move_tween(inputs[dir])
 	
 func move_tween(dirVector : Vector2) -> void:
-	tween.interpolate_property(self
+	var _dummy0 = tween.interpolate_property(self
 					,"position"
 					,position
 					,position + dirVector * tile_size
 					,1.0/speed
 					,Tween.TRANS_LINEAR
 					,Tween.EASE_IN_OUT)
-	tween.start()
+	var _dummy1 = tween.start()
 
 func initialSetup(localSpeed,tileSize,local_initial_character_position) -> void:
 	self.speed = localSpeed
