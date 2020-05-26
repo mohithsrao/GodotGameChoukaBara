@@ -43,30 +43,6 @@ func _input_event(_viewport, event, _shape_idx):
 				else:
 					unselect_pawn()
 				
-#func _process(_delta):
-	# use this if you want to only move on keypress
-	# func _unhandled_input(event):
-#	if tween.is_active():
-#		return
-#	if(navigationPath.size() > 0):
-#		var distance_to_next_point = global_position.distance_to(navigationPath[0])
-#		if(distance_to_next_point <= tile_size/2.0):
-#			navigationPath.remove(0)
-#		else:
-#			var angleToDestination : = rad2deg(global_position.angle_to_point(navigationPath[0]))
-#			if(angleToDestination < 45 and angleToDestination >= - 45):
-#				move("left")
-#			if(angleToDestination < - 45 and angleToDestination >= - 45 * 3):
-#				move("down")
-#			if(angleToDestination < - 45 * 3 or angleToDestination >= 45 * 3):
-#				move("right")
-#			if(angleToDestination < 45 * 3 and angleToDestination >= 45):
-#				move("up")
-#	else:
-#		set_process(false)
-#		emit_signal("character_unselected")
-#		sprite.scale = Vector2(1,1)
-
 func removeFirstElementFromNavigationPath() -> void:
 	navigationPath.remove(0)
 

@@ -16,13 +16,9 @@ func sortPlayers(playerOne:Player,playerTwo:Player) -> bool:
 	return playerOne.player_index > playerTwo.player_index
 		
 func _process(_delta):  #move_pawn():
-#	if PlayerInfo.active_player.selectedPawn == null:
-#		return
 	if  PlayerInfo.active_player.selectedPawn.tween.is_active():
 		return
 	if(not PlayerInfo.active_player.selectedPawn.navigationPath.empty()):
-#	while (not PlayerInfo.active_player.selectedPawn.navigationPath.empty()):
-#	for navPoint in PlayerInfo.active_player.selectedPawn.navigationPath:
 		var navPoint = PlayerInfo.active_player.selectedPawn.navigationPath[0]
 		var distance_to_next_point = PlayerInfo.active_player.selectedPawn.global_position.distance_to(navPoint)
 		if(distance_to_next_point <= PlayerInfo.active_player.selectedPawn.tile_size/2.0):
