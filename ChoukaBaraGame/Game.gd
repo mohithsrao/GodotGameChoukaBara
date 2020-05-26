@@ -35,5 +35,7 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 	return resultArray
 
 func _ready():
-	turnManager.play_turn()
-	yield(turnManager,"turn_complete")
+	while true:
+		turnManager.play_turn()
+		yield(turnManager,"turn_complete")
+

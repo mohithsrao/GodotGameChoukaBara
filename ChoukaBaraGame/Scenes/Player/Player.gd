@@ -67,6 +67,9 @@ func _input_event(_viewport, event, _shape_idx):
 #		emit_signal("character_unselected")
 #		sprite.scale = Vector2(1,1)
 
+func removeFirstElementFromNavigationPath() -> void:
+	navigationPath.remove(0)
+
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value
 	emit_signal("destination_selected")
