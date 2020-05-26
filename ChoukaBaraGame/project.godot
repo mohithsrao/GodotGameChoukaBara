@@ -36,6 +36,10 @@ config/name="ChoukaBaraGame"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerInfo="*res://Scripts/PlayerInfo.gd"
+
 [debug]
 
 gdscript/completion/autocomplete_setters_and_getters=true
