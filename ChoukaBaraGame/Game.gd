@@ -1,40 +1,22 @@
 extends Node2D
 
-var selectedCharacter
 var tile_size : = 192
 
-onready var playerSpawnerOneInstance : = $PlayerSpawnerOne
-onready var playerSpawnerTwoInstance : = $PlayerSpawnerTwo
-onready var playerSpawnerThreeInstance : = $PlayerSpawnerThree
-onready var playerSpawnerFourInstance : = $PlayerSpawnerFour
+onready var turnManager: = $TurnManager
 onready var line : Line2D = $Line2D
 
-func _ready() -> void:
-	for childNode in playerSpawnerOneInstance.get_children():
-		connectToUserSignals(childNode)
-	for childNode in playerSpawnerTwoInstance.get_children():
-		connectToUserSignals(childNode)
-	for childNode in playerSpawnerThreeInstance.get_children():
-		connectToUserSignals(childNode)
-	for childNode in playerSpawnerFourInstance.get_children():
-		connectToUserSignals(childNode)
-
 func _unhandled_input(event : InputEvent) -> void:
-	if event is InputEventMouseButton and selectedCharacter != null:
-		var inpEvent : InputEventMouseButton = event as InputEventMouseButton
-		if inpEvent.button_index == BUTTON_LEFT and inpEvent.pressed:
-			var navigationInstance = getNavigationInstanceforSelectedCharactor(selectedCharacter)
-			var path = navigationInstance.get_simple_path(selectedCharacter.position, inpEvent.position)
-			var normalizedPath = normalizeNavigationPath(path)
-			selectedCharacter.navigationPath = normalizedPath
-			line.points = normalizedPath
+	if PlayerInfo.active_player != null:
+		if event is InputEventMouseButton and PlayerInfo.active_player.selectedPawn != null:
+			var inpEvent : InputEventMouseButton = event as InputEventMouseButton
+			if inpEvent.button_index == BUTTON_LEFT and inpEvent.pressed:
+				var navigationInstance = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player.selectedPawn)
+				var path = navigationInstance.get_simple_path(PlayerInfo.active_player.selectedPawn.position, inpEvent.position)
+				var normalizedPath = normalizeNavigationPath(path)
+				PlayerInfo.active_player.selectedPawn.navigationPath = normalizedPath
+				line.points = normalizedPath
 
-func connectToUserSignals(node:Node2D) -> void:
-	if(node.is_class("Area2D")):
-		node.connect("character_selected",self,"_on_character_selected")
-		node.connect("character_unselected",self,"_on_character_unselected")
-
-func getNavigationInstanceforSelectedCharactor(character):
+func getNavigationInstanceforSelectedCharactor(character : Pawn) -> Navigation2D:
 	var navigationInstance = character.get_node("../Navigation2D")
 	return navigationInstance
 
@@ -51,10 +33,10 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		resultArray.append(newPoint)
 	
 	return resultArray
-	 
-func _on_character_selected(character) -> void:
-	selectedCharacter = character
 
-func _on_character_unselected() -> void:
-	selectedCharacter = null
-	line.clear_points()
+func _ready():
+	while true:
+		turnManager.play_turn()
+		yield(turnManager,"turn_complete")
+		line.clear_points()
+

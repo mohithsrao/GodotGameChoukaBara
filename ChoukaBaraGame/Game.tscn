@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Japaneese_Village_Background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/PlayerSpawner.gd" type="Script" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://TurnManager.gd" type="Script" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 30, 930, 30, 420, 160, 420, 160, 800, 930, 930, 800, 800, 930, 30, 800, 160, 30, 30, 160, 160, 30, 350, 160, 230, 610, 350, 730, 230, 730, 740, 610, 610, 230, 740, 350, 610, 230, 420, 350, 540, 540, 420, 540, 540 )
@@ -23,43 +24,46 @@ region_rect = Rect2( 0, 0, 1024, 1024 )
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 
-[node name="PlayerSpawnerOne" type="Node" parent="."]
+[node name="TurnManager" type="YSort" parent="."]
+script = ExtResource( 5 )
+
+[node name="PlayerSpawnerOne" type="Node" parent="TurnManager"]
 script = ExtResource( 3 )
 
-[node name="Navigation2D" type="Navigation2D" parent="PlayerSpawnerOne"]
+[node name="Navigation2D" type="Navigation2D" parent="TurnManager/PlayerSpawnerOne"]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="PlayerSpawnerOne/Navigation2D"]
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TurnManager/PlayerSpawnerOne/Navigation2D"]
 navpoly = SubResource( 1 )
 
-[node name="PlayerSpawnerTwo" type="Node" parent="."]
+[node name="PlayerSpawnerTwo" type="Node" parent="TurnManager"]
 script = ExtResource( 3 )
 player_index = 1
 
-[node name="Navigation2D" type="Navigation2D" parent="PlayerSpawnerTwo"]
+[node name="Navigation2D" type="Navigation2D" parent="TurnManager/PlayerSpawnerTwo"]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="PlayerSpawnerTwo/Navigation2D"]
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TurnManager/PlayerSpawnerTwo/Navigation2D"]
 position = Vector2( 0, 960 )
 rotation = -1.5708
 navpoly = SubResource( 1 )
 
-[node name="PlayerSpawnerThree" type="Node" parent="."]
+[node name="PlayerSpawnerThree" type="Node" parent="TurnManager"]
 script = ExtResource( 3 )
 player_index = 2
 
-[node name="Navigation2D" type="Navigation2D" parent="PlayerSpawnerThree"]
+[node name="Navigation2D" type="Navigation2D" parent="TurnManager/PlayerSpawnerThree"]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="PlayerSpawnerThree/Navigation2D"]
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TurnManager/PlayerSpawnerThree/Navigation2D"]
 position = Vector2( 960, 960 )
 rotation = 3.14159
 navpoly = SubResource( 1 )
 
-[node name="PlayerSpawnerFour" type="Node" parent="."]
+[node name="PlayerSpawnerFour" type="Node" parent="TurnManager"]
 script = ExtResource( 3 )
 player_index = 3
 
-[node name="Navigation2D" type="Navigation2D" parent="PlayerSpawnerFour"]
+[node name="Navigation2D" type="Navigation2D" parent="TurnManager/PlayerSpawnerFour"]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="PlayerSpawnerFour/Navigation2D"]
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TurnManager/PlayerSpawnerFour/Navigation2D"]
 position = Vector2( 960, 0 )
 rotation = 1.5708
 navpoly = SubResource( 1 )

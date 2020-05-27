@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Pawn",
+"language": "GDScript",
+"path": "res://Scenes/Player/Player.gd"
+}, {
+"base": "Node",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/PlayerSpawner.gd"
+}, {
+"base": "YSort",
+"class": "TurnManager",
+"language": "GDScript",
+"path": "res://TurnManager.gd"
+} ]
 _global_script_class_icons={
-
+"Pawn": "",
+"Player": "",
+"TurnManager": ""
 }
 
 [application]
@@ -18,6 +35,10 @@ _global_script_class_icons={
 config/name="ChoukaBaraGame"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PlayerInfo="*res://Scripts/PlayerInfo.gd"
 
 [debug]
 
