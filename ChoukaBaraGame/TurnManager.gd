@@ -4,6 +4,9 @@ class_name TurnManager
 
 signal turn_complete
 signal movement_complete
+signal koude_roll_complete
+
+var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
 
 func _ready():
 	var players = get_children()
@@ -15,7 +18,7 @@ func _ready():
 func sortPlayers(playerOne:Player,playerTwo:Player) -> bool:
 	return playerOne.player_index > playerTwo.player_index
 		
-func _process(_delta):  #move_pawn():
+func _process(_delta):
 	if  PlayerInfo.active_player.selectedPawn.tween.is_active():
 		return
 	if(not PlayerInfo.active_player.selectedPawn.navigationPath.empty()):
@@ -38,15 +41,26 @@ func _process(_delta):  #move_pawn():
 		selectNextPlayer()
 		emit_signal("movement_complete")
 
-func play_turn():
+func play_turn() -> void:
 	set_process(false)
 	yield(PlayerInfo.active_player,"pawnSelected")
+	RollKoude()
+	yield(self,"koude_roll_complete")
 	yield(PlayerInfo.active_player.selectedPawn,"destination_selected")
 	set_process(true)
 	yield(self,"movement_complete")
 	set_process(false)
 	emit_signal("turn_complete")
 
-func selectNextPlayer():
+func selectNextPlayer() -> void:
 	var next_battler_index: int = (PlayerInfo.active_player.get_index() + 1) % get_child_count()
 	PlayerInfo.active_player = get_child(next_battler_index)
+
+func RollKoude() -> void:
+	var popupInstance = koudePopup.instance()
+	popupInstance.connect("confirmed",self,"_on_popup_confirmed")
+	add_child(popupInstance)
+
+func _on_popup_confirmed() -> void:
+	emit_signal("koude_roll_complete")
+	
