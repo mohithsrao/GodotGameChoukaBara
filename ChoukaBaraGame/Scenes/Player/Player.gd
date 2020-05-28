@@ -4,7 +4,7 @@ class_name Pawn
 
 signal pawn_selected
 signal pawn_unselected
-signal destination_selected
+#signal destination_selected
 
 onready var tween : Tween = $Tween
 onready var ray : RayCast2D = $RayCast2D
@@ -46,9 +46,12 @@ func _input_event(_viewport, event, _shape_idx):
 func removeFirstElementFromNavigationPath() -> void:
 	navigationPath.remove(0)
 
+func clearNavigationPath():
+	navigationPath.resize(0)
+
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value
-	emit_signal("destination_selected")
+#	emit_signal("destination_selected")
 		
 func move(dir : String) -> void:
 	ray.cast_to = inputs[dir] * tile_size

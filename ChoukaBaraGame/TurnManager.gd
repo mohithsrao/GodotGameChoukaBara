@@ -6,7 +6,11 @@ signal turn_complete
 signal movement_complete
 signal koude_roll_complete
 
+var goalPosition : Vector2 = Vector2(480,480)
 var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
+var garaList : Array
+var moveCount:int = 0
+var garaValue:int = 0
 
 func _ready():
 	var players = get_children()
@@ -21,6 +25,8 @@ func sortPlayers(playerOne:Player,playerTwo:Player) -> bool:
 func _process(_delta):
 	if  PlayerInfo.active_player.selectedPawn.tween.is_active():
 		return
+	if(moveCount == garaValue):
+		PlayerInfo.active_player.selectedPawn.clearNavigationPath()
 	if(not PlayerInfo.active_player.selectedPawn.navigationPath.empty()):
 		var navPoint = PlayerInfo.active_player.selectedPawn.navigationPath[0]
 		var distance_to_next_point = PlayerInfo.active_player.selectedPawn.global_position.distance_to(navPoint)
@@ -36,7 +42,9 @@ func _process(_delta):
 				PlayerInfo.active_player.selectedPawn.move("right")
 			if(angleToDestination < 45 * 3 and angleToDestination >= 45):
 				PlayerInfo.active_player.selectedPawn.move("up")
+			moveCount += 1
 	else:
+		moveCount = 0
 		PlayerInfo.active_player.selectedPawn.unselect_pawn()
 		selectNextPlayer()
 		emit_signal("movement_complete")
@@ -45,9 +53,9 @@ func play_turn() -> void:
 	set_process(false)
 	yield(PlayerInfo.active_player,"pawnSelected")
 	RollKoude()
-	yield(self,"koude_roll_complete")
-	yield(PlayerInfo.active_player.selectedPawn,"destination_selected")
+	yield(self,"koude_roll_complete")	
 	set_process(true)
+	select_destination(garaList)	
 	yield(self,"movement_complete")
 	set_process(false)
 	emit_signal("turn_complete")
@@ -59,8 +67,37 @@ func selectNextPlayer() -> void:
 func RollKoude() -> void:
 	var popupInstance = koudePopup.instance()
 	popupInstance.connect("confirmed",self,"_on_popup_confirmed")
+	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
 	add_child(popupInstance)
+
+func select_destination(list : Array) -> void:
+	for item in list:
+		var navigationInstance = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player.selectedPawn)
+		var path = navigationInstance.get_simple_path(PlayerInfo.active_player.selectedPawn.position, goalPosition)
+		var normalizedPath = normalizeNavigationPath(path)
+		garaValue = item
+		PlayerInfo.active_player.selectedPawn.navigationPath = normalizedPath
+
+func getNavigationInstanceforSelectedCharactor(character : Pawn) -> Navigation2D:
+	var navigationInstance = character.get_node("../Navigation2D")
+	return navigationInstance
+
+
+func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
+	var resultArray = PoolVector2Array()
+	for point in path:
+		var modValueX = floor(point.x / (PlayerInfo.active_player.tile_size))
+		var modValueY = floor(point.y / (PlayerInfo.active_player.tile_size))
+		var newPoint = Vector2(
+			 (modValueX * (PlayerInfo.active_player.tile_size)) + (PlayerInfo.active_player.tile_size / 2.0)
+			,(modValueY * (PlayerInfo.active_player.tile_size)) + (PlayerInfo.active_player.tile_size / 2.0))
+		
+		resultArray.append(newPoint)
+	
+	return resultArray
 
 func _on_popup_confirmed() -> void:
 	emit_signal("koude_roll_complete")
 	
+func _on_popup_gara_complete(list:Array):
+	garaList = list

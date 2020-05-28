@@ -4,18 +4,14 @@
 [ext_resource path="res://Scenes/Gara/GaraPopup.gd" type="Script" id=2]
 
 [node name="GaraPopup" type="AcceptDialog"]
+visible = true
 anchor_right = 0.646
-anchor_bottom = 0.677
-margin_top = 20.0
+anchor_bottom = 0.656
 margin_right = -0.160034
-margin_bottom = 0.0799561
-window_title = "Roll Gara"
-dialog_text = "Wait for Koude Roll!!!!"
+margin_bottom = 0.23999
+window_title = "Gara"
+dialog_text = "Wait for Koude Roll !!"
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
