@@ -2,6 +2,8 @@ extends CenterContainer
 
 class_name Koude
 
+signal roll_finished
+
 onready var animationPlayer = $AnimationPlayer
 onready var sprite = $Sprite
 onready var timer = $Timer
@@ -9,11 +11,8 @@ onready var timer = $Timer
 var openShell = preload("res://Assets/Shells/Shell_001_Open.png")
 var closeShell = preload("res://Assets/Shells/Shell_001_Close.png")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	animationPlayer.play("play")
-
 func setState(state:bool,timerDelay:float)->void:
+	animationPlayer.play("play")
 	timer.start(timerDelay)
 	yield(timer,"timeout")
 	animationPlayer.stop(true)
@@ -21,3 +20,4 @@ func setState(state:bool,timerDelay:float)->void:
 		sprite.texture = openShell
 	else:
 		sprite.texture = closeShell
+	emit_signal("roll_finished")
