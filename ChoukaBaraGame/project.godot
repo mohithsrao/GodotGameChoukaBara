@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Gara",
+"language": "GDScript",
+"path": "res://Scenes/Gara/Gara.gd"
+}, {
+"base": "CenterContainer",
+"class": "Koude",
+"language": "GDScript",
+"path": "res://Scenes/Gara/Koude.gd"
+}, {
 "base": "Area2D",
 "class": "Pawn",
 "language": "GDScript",
@@ -25,6 +35,8 @@ _global_script_classes=[ {
 "path": "res://TurnManager.gd"
 } ]
 _global_script_class_icons={
+"Gara": "",
+"Koude": "",
 "Pawn": "",
 "Player": "",
 "TurnManager": ""
