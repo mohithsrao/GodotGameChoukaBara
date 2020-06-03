@@ -4,12 +4,15 @@ class_name Pawn
 
 signal pawn_selected
 signal pawn_unselected
-#signal destination_selected
 
 onready var tween : Tween = $Tween
 onready var ray : RayCast2D = $RayCast2D
 onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
+onready var hitboxCollision = $Hitbox/CollisionShape2D
+onready var hitbox = $Hitbox
+onready var hurtbox = $Hurtbox
+onready var hurtboxCollision = $Hurtbox/CollisionShape2D
 
 var speed : int = 2
 var tile_size : int = 192
@@ -32,6 +35,8 @@ func _ready():
 	position.x += (tile_size / 3.0) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
+	disableHitBox()
+	hurtbox.connect("area_entered",self,"_on_hurtbox_area_entered")
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
@@ -84,3 +89,22 @@ func unselect_pawn() -> void:
 	PlayerInfo.active_player.selectedPawn = null
 	sprite.scale = Vector2(1,1)
 	emit_signal("pawn_unselected")
+
+func gotoHomeBase():
+	var homebasePosition = get_parent().getHomebasePosition()
+
+func disableHitBox() -> void:
+	self.hitboxCollision.disabled = true
+	self.hurtboxCollision.disabled = true
+
+func enableHitBox() -> void:
+	self.hitboxCollision.disabled = false
+	self.hurtboxCollision.disabled = false
+	
+func _on_hurtbox_area_entered(areaEntered:Area2D):
+	var enteredPawn = areaEntered.get_parent()
+	var enteredPlayer = enteredPawn.get_parent()
+	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id()):
+		return
+	if(self.get_parent().get_instance_id() != enteredPlayer.get_instance_id() && self.get_parent().get_instance_id() != PlayerInfo.active_player.get_instance_id()):
+		gotoHomeBase()

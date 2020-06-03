@@ -23,9 +23,11 @@ func _ready():
 
 func sortPlayers(playerOne:Player,playerTwo:Player) -> bool:
 	return playerOne.player_index > playerTwo.player_index
-		
+
 func _process(_delta):
-	if  PlayerInfo.active_player.selectedPawn.tween.is_active():
+	if !PlayerInfo.active_player.selectedPawn:
+		return
+	if PlayerInfo.active_player.selectedPawn && PlayerInfo.active_player.selectedPawn.tween.is_active():
 		return
 	if(moveCount == garaValue):
 		PlayerInfo.active_player.selectedPawn.clearNavigationPath()
@@ -49,19 +51,17 @@ func _process(_delta):
 			moveCount += 1
 	else:
 		moveCount = 0
-		PlayerInfo.active_player.selectedPawn.unselect_pawn()
-		selectNextPlayer()
 		emit_signal("movement_complete")
 
 func play_turn() -> void:
-	set_process(false)
 	yield(PlayerInfo.active_player,"pawnSelected")
 	RollKoude()
-	yield(self,"koude_roll_complete")	
-	set_process(true)
+	yield(self,"koude_roll_complete")
 	select_destination(garaList)	
 	yield(self,"movement_complete")
-	set_process(false)
+	PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox")
+	PlayerInfo.active_player.selectedPawn.unselect_pawn()
+	selectNextPlayer()
 	emit_signal("turn_complete")
 
 func selectNextPlayer() -> void:
@@ -76,15 +76,17 @@ func RollKoude() -> void:
 
 func select_destination(list : Array) -> void:
 	for item in list:
-		var navigationInstance = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player.selectedPawn)
+		PlayerInfo.active_player.selectedPawn.call_deferred("disableHitBox")
+		var navigationInstance = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player)
 		var path = navigationInstance.get_simple_path(PlayerInfo.active_player.selectedPawn.position, goalPosition)
 		var normalizedPath = normalizeNavigationPath(path)
 		garaValue = item
 		PlayerInfo.active_player.selectedPawn.navigationPath = normalizedPath
 		yield(self,"movement_round_complete")
+		PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox")
 
-func getNavigationInstanceforSelectedCharactor(character : Pawn) -> Navigation2D:
-	var navigationInstance = character.get_node("../Navigation2D")
+func getNavigationInstanceforSelectedCharactor(character : Player) -> Navigation2D:
+	var navigationInstance = character.get_node("Navigation2D")
 	return navigationInstance
 
 
