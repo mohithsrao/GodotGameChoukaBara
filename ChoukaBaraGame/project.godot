@@ -51,7 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 PlayerInfo="*res://Scripts/Player/PlayerInfo.gd"
-GameInfo="*res://Scripts/Game/GameInfo.gd"
+GameUtility="*res://Scripts/Game/GameUtility.gd"
 
 [debug]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 20.0
+radius = 35.0
 
 [node name="Hurtbox" type="Area2D"]
 collision_layer = 8

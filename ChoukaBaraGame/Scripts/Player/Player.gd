@@ -27,6 +27,7 @@ func selectedPawn_get() -> Pawn:
 func _ready():
 	homeBase.position += Vector2(PlayerInfo.playerDetails[player_index].x_offset,PlayerInfo.playerDetails[player_index].y_offset) * tile_size
 	allignNavigationNode()
+	homeBase.connect("area_entered",self,"_on_homeBase_area_entered")
 	
 	for playerIndex in range(0,maxCharactersPerPlayer):
 		var character = playerScene.instance()
@@ -36,7 +37,6 @@ func _ready():
 		character.position = character.position.snapped(Vector2.ONE * tile_size)
 		character.position.y = tile_size * PlayerInfo.playerDetails[player_index].y_offset
 		character.position.x = tile_size * PlayerInfo.playerDetails[player_index].x_offset
-		homeBase.connect("area_entered",self,"_on_homeBase_area_entered")
 		add_child(character)
 
 func _on_homeBase_area_entered(area:Area2D):
