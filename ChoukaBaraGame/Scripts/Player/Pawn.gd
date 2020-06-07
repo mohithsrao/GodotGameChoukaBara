@@ -109,6 +109,9 @@ func initialSetup(localSpeed,tileSize,local_initial_character_position) -> void:
 	self.speed = localSpeed
 	self.tile_size = tileSize
 	self.initial_character_position = local_initial_character_position	
+
+func resetAnimation() -> void:
+	animationPlayer.queue("down")
 	
 func select_pawn(pawn:Pawn) -> void:
 	PlayerInfo.active_player.selectedPawn = pawn
@@ -121,8 +124,7 @@ func unselect_pawn() -> void:
 	emit_signal("pawn_unselected")
 
 func gotoHomeBase(pawn:Pawn):
-	var homebasePosition = pawn.get_parent().getHomebasePosition()
-	
+	var homebasePosition = pawn.get_parent().getHomebasePosition()	
 	GameUtility.select_destination([100],pawn,homebasePosition,false)
 
 func disableHitBox() -> void:
