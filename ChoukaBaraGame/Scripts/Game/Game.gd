@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var turnManager: = $TurnManager
+onready var turnManager: TurnManager = $TurnManager
 
 func _ready():
 	while true:
