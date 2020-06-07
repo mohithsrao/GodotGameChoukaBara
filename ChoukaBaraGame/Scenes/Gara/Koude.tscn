@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Gara/Koude.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Gara/Koude.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Shells/Shell_001_Open.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Shells/Shell_001_Close.png" type="Texture" id=3]
 

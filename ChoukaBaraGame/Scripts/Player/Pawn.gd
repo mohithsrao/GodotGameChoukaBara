@@ -4,18 +4,25 @@ class_name Pawn
 
 signal pawn_selected
 signal pawn_unselected
-#signal destination_selected
+
+signal movement_round_complete
+signal movement_complete
 
 onready var tween : Tween = $Tween
 onready var ray : RayCast2D = $RayCast2D
 onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
+onready var hitboxCollision = $Hitbox/CollisionShape2D
+onready var hitbox = $Hitbox
+onready var hurtbox = $Hurtbox
+onready var hurtboxCollision = $Hurtbox/CollisionShape2D
 
 var speed : int = 2
 var tile_size : int = 192
 var initial_character_position : int
+var moveCount:int = 0
+var garaValue:int = 0
 var navigationPath: = PoolVector2Array() setget set_navigationPath
-
 var inputs = {"right": Vector2.RIGHT,
 			"left": Vector2.LEFT,
 			"up": Vector2.UP,
@@ -32,6 +39,8 @@ func _ready():
 	position.x += (tile_size / 3.0) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
+	call_deferred("disableHitBox")
+	hurtbox.connect("area_entered",self,"_on_hurtbox_area_entered")
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
@@ -42,7 +51,34 @@ func _input_event(_viewport, event, _shape_idx):
 					select_pawn(self)
 				else:
 					unselect_pawn()
-				
+
+func _process(_delta):	
+	if tween.is_active():
+		return
+	if(not navigationPath.empty()):
+		if(moveCount == garaValue):
+			clearNavigationPath()
+			moveCount = 0
+			emit_signal("movement_round_complete")
+			return
+		var navPoint = navigationPath[0]
+		var distance_to_next_point = global_position.distance_to(navPoint)
+		if(distance_to_next_point <= tile_size/2.0):
+			removeFirstElementFromNavigationPath()
+		else:
+			var angleToDestination : = rad2deg(global_position.angle_to_point(navPoint))
+			if(angleToDestination < 45 and angleToDestination >= - 45):
+				move("left")
+			if(angleToDestination < - 45 and angleToDestination >= - 45 * 3):
+				move("down")
+			if(angleToDestination < - 45 * 3 or angleToDestination >= 45 * 3):
+				move("right")
+			if(angleToDestination < 45 * 3 and angleToDestination >= 45):
+				move("up")
+			moveCount += 1
+	else:
+		moveCount = 0
+
 func removeFirstElementFromNavigationPath() -> void:
 	navigationPath.remove(0)
 
@@ -51,7 +87,6 @@ func clearNavigationPath():
 
 func set_navigationPath(value:PoolVector2Array) -> void:
 	navigationPath = value
-#	emit_signal("destination_selected")
 		
 func move(dir : String) -> void:
 	ray.cast_to = inputs[dir] * tile_size
@@ -84,3 +119,24 @@ func unselect_pawn() -> void:
 	PlayerInfo.active_player.selectedPawn = null
 	sprite.scale = Vector2(1,1)
 	emit_signal("pawn_unselected")
+
+func gotoHomeBase(pawn:Pawn):
+	var homebasePosition = pawn.get_parent().getHomebasePosition()
+	
+	GameUtility.select_destination([100],pawn,homebasePosition,false)
+
+func disableHitBox() -> void:
+	hitboxCollision.disabled = true
+	hurtboxCollision.disabled = true
+
+func enableHitBox(andGetHurt:bool) -> void:
+	hitboxCollision.disabled = false
+	hurtboxCollision.disabled = andGetHurt
+	
+func _on_hurtbox_area_entered(areaEntered:Area2D):
+	var enteredPawn = areaEntered.get_parent()
+	var enteredPlayer = enteredPawn.get_parent()
+	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id() || ((self.get_parent().player_index + 1) % 4)  == PlayerInfo.active_player.player_index):
+		return
+	if(self.get_parent().get_instance_id() != enteredPlayer.get_instance_id()):
+		gotoHomeBase(self)

@@ -12,22 +12,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Gara",
 "language": "GDScript",
-"path": "res://Scenes/Gara/Gara.gd"
+"path": "res://Scripts/Gara/Gara.gd"
 }, {
 "base": "CenterContainer",
 "class": "Koude",
 "language": "GDScript",
-"path": "res://Scenes/Gara/Koude.gd"
+"path": "res://Scripts/Gara/Koude.gd"
 }, {
 "base": "Area2D",
 "class": "Pawn",
 "language": "GDScript",
-"path": "res://Scenes/Player/Player.gd"
+"path": "res://Scripts/Player/Pawn.gd"
 }, {
 "base": "Node",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Scripts/PlayerSpawner.gd"
+"path": "res://Scripts/Player/Player.gd"
 }, {
 "base": "YSort",
 "class": "TurnManager",
@@ -50,7 +50,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PlayerInfo="*res://Scripts/PlayerInfo.gd"
+PlayerInfo="*res://Scripts/Player/PlayerInfo.gd"
+GameUtility="*res://Scripts/Game/GameUtility.gd"
 
 [debug]
 
@@ -91,6 +92,13 @@ down={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Homebase"
+2d_physics/layer_3="Hit"
+2d_physics/layer_4="Hurt"
 
 [rendering]
 
