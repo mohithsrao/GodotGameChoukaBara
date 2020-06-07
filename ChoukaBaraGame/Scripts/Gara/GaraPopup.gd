@@ -25,13 +25,13 @@ func _ready():
 	popup_centered()
 	while repeat:
 		list.append(getState())
-		koude01.setState(list[0],0.1)
+		koude01.setState(list[0],1)
 		list.append(getState())
-		koude02.setState(list[1],0.2)
+		koude02.setState(list[1],2)
 		list.append(getState())
-		koude03.setState(list[2],0.3)
+		koude03.setState(list[2],3)
 		list.append(getState())
-		koude04.setState(list[3],0.4)
+		koude04.setState(list[3],4)
 		var count = list.count(true)
 		repeat = count == 0 || count == 4
 		if(count == 0):

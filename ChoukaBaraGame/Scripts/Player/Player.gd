@@ -41,14 +41,6 @@ func _ready():
 
 func _on_homeBase_area_entered(area:Area2D):
 	var pawn = area.get_parent()
-#	var isChild = false
-#	for childIndex in range(0,self.get_child_count()):
-#		if(get_child(childIndex).get_instance_id() == pawn.get_instance_id()):
-#			isChild = true
-#			break 
-#
-#	if(isChild):
-#		emit_signal("pawn_returned_home")
 	pawn.call_deferred("disableHitBox")
 		
 func allignNavigationNode() -> void:

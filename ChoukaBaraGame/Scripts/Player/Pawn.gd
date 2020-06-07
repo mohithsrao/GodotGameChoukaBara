@@ -39,7 +39,7 @@ func _ready():
 	position.x += (tile_size / 3.0) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
 	animationPlayer.playback_speed = speed
-	disableHitBox()
+	call_deferred("disableHitBox")
 	hurtbox.connect("area_entered",self,"_on_hurtbox_area_entered")
 
 func _input_event(_viewport, event, _shape_idx):
@@ -122,10 +122,11 @@ func unselect_pawn() -> void:
 
 func gotoHomeBase(pawn:Pawn):
 	var homebasePosition = pawn.get_parent().getHomebasePosition()
+	
 	GameUtility.select_destination([100],pawn,homebasePosition,false)
 
 func disableHitBox() -> void:
-	hitboxCollision.disabled = false
+	hitboxCollision.disabled = true
 	hurtboxCollision.disabled = true
 
 func enableHitBox(andGetHurt:bool) -> void:

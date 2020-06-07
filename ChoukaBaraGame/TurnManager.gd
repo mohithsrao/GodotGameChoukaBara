@@ -24,9 +24,10 @@ func play_turn() -> void:
 	yield(PlayerInfo.active_player,"pawnSelected")
 	RollKoude()
 	yield(self,"koude_roll_complete")
+	PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",true)
 	GameUtility.select_destination(garaList,PlayerInfo.active_player.selectedPawn,goalPosition,true)	
 	yield(PlayerInfo.active_player.selectedPawn,"movement_complete")
-	PlayerInfo.active_player.selectedPawn.enableHitBox(false)
+	PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",false)
 	
 	PlayerInfo.active_player.selectedPawn.unselect_pawn()
 	selectNextPlayer()
