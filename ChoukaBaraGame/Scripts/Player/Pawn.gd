@@ -6,7 +6,6 @@ signal pawn_selected
 signal pawn_unselected
 
 signal movement_round_complete
-signal movement_complete
 
 onready var tween : Tween = $Tween
 onready var ray : RayCast2D = $RayCast2D
@@ -125,7 +124,7 @@ func unselect_pawn() -> void:
 
 func gotoHomeBase(pawn:Pawn):
 	var homebasePosition = pawn.get_parent().getHomebasePosition()	
-	GameUtility.select_destination([100],pawn,homebasePosition,false)
+	yield(GameUtility.select_destination(100,pawn,homebasePosition,false),"completed")
 
 func disableHitBox() -> void:
 	hitboxCollision.disabled = true

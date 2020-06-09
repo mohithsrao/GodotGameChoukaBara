@@ -4,18 +4,16 @@ func getNavigationInstanceforSelectedCharactor(character : Player) -> Navigation
 	var navigationInstance = character.get_node("Navigation2D")
 	return navigationInstance
 
-func select_destination(list : Array,pawn:Pawn,goalPosition:Vector2,canHit:bool) -> void:
-	for item in list:
-		pawn.call_deferred("disableHitBox")
-		var navigationInstance : Navigation2D = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player)
-		var path = navigationInstance.get_simple_path(pawn.position, goalPosition)
-		var normalizedPath = normalizeNavigationPath(path)
-		pawn.navigationPath = normalizedPath
-		pawn.garaValue = item
-		yield(pawn,"movement_round_complete")
-		if(canHit):
-			pawn.call_deferred("enableHitBox",true)
-	pawn.emit_signal("movement_complete")
+func select_destination(value : int,pawn:Pawn,goalPosition:Vector2,canHit:bool) -> void:
+	pawn.call_deferred("disableHitBox")
+	var navigationInstance : Navigation2D = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player)
+	var path = navigationInstance.get_simple_path(pawn.position, goalPosition)
+	var normalizedPath = normalizeNavigationPath(path)
+	pawn.navigationPath = normalizedPath
+	pawn.garaValue = value
+	yield(pawn,"movement_round_complete")
+	if(canHit):
+		pawn.call_deferred("enableHitBox",true)
 
 func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 	var resultArray = PoolVector2Array()
