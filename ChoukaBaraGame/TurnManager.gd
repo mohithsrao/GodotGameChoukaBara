@@ -24,8 +24,8 @@ func sortPlayers(playerOne:Player,playerTwo:Player) -> bool:
 	return playerOne.player_index < playerTwo.player_index
 
 func play_turn() -> void:
-	notifyCurrentPlayer()
-	yield(self,"turn_notification_complete")
+#	notifyCurrentPlayer()
+#	yield(self,"turn_notification_complete")
 	RollKoude()
 	yield(self,"koude_roll_complete")
 	yield(startPawnMovement(),"completed")
