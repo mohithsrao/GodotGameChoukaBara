@@ -1,11 +1,14 @@
 extends Node
 
 signal player_changed(player)
+signal gara_list_updated(garaList)
 
 var active_player:Player setget active_player_set
 func active_player_set(value:Player)->void:
 	active_player = value
 	emit_signal("player_changed",active_player)
+
+var garaList : Array = []
 
 var playerDetails = {
 	 0: { "x_offset": 0,"y_offset":2, "texture": preload("res://Assets/Player/L.png") }

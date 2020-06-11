@@ -125,7 +125,6 @@ func unselect_pawn() -> void:
 func gotoHomeBase(pawn:Pawn):
 	var homebasePosition = pawn.get_parent().getHomebasePosition()	
 	yield(GameUtility.select_destination(100,pawn,homebasePosition,false),"completed")
-	
 
 func disableHitBox() -> void:
 	hitboxCollision.disabled = true

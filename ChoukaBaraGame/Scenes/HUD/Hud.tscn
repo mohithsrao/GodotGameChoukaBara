@@ -6,66 +6,6 @@
 [ext_resource path="res://Assets/Player/ryuk.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Player/misaamane.png" type="Texture" id=5]
 
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 48, 64 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 48, 0, 48, 64 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 96, 0, 48, 64 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 144, 0, 48, 64 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 32, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 64, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 96, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 64, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 96, 0, 32, 48 )
-
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
@@ -86,26 +26,86 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 48 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 144, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 32, 48 )
+
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "1",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "0",
 "speed": 5.0
 } ]
 
@@ -131,7 +131,7 @@ __meta__ = {
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 118.0
-margin_bottom = 101.0
+margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -140,7 +140,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
 margin_right = 113.0
-margin_bottom = 60.0
+margin_bottom = 78.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -150,13 +150,13 @@ custom_constants/margin_left = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/MarginContainer"]
 margin_left = 2.0
 margin_right = 111.0
-margin_bottom = 60.0
+margin_bottom = 78.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 position = Vector2( 48, 36 )
-frames = SubResource( 5 )
+frames = SubResource( 17 )
 animation = "0"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
@@ -165,16 +165,18 @@ margin_bottom = 14.0
 text = "Current Player"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
-margin_top = 64.0
+margin_top = 82.0
 margin_right = 113.0
-margin_bottom = 96.0
+margin_bottom = 109.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer2"]
 margin_right = 113.0
 margin_bottom = 14.0
 text = "Moves Remaining"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer2"]
+[node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer2/VBoxContainer2"]
 margin_top = 18.0
 margin_right = 113.0
-margin_bottom = 32.0
+margin_bottom = 27.0
+custom_constants/line_separation = 3
+auto_height = true
