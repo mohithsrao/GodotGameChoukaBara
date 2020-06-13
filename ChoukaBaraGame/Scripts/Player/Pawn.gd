@@ -144,7 +144,7 @@ func _on_hurtbox_area_entered(areaEntered:Area2D):
 	var enteredPlayer = enteredPawn.get_parent()
 	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id()):
 		return
-	if(((self.get_parent().player_index + 1) % 4)  == PlayerInfo.active_player.player_index):		
+	if(((self.get_parent().player_index + 1) % 4)  == PlayerInfo.active_player.player_index):
 		return
 	if(self.get_parent().get_instance_id() != enteredPlayer.get_instance_id()):
 		PlayerInfo.pawnHit = self

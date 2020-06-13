@@ -24,7 +24,7 @@ func checkPlayerHit() -> void:
 		yield(GameUtility.RollKoude(),"completed")
 		PlayerInfo.pawnHit = null
 	yield(get_tree(), "idle_frame")
-	
+
 func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 	var resultArray = PoolVector2Array()
 	for point in path:
