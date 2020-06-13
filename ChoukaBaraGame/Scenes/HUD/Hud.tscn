@@ -156,7 +156,7 @@ margin_bottom = 78.0
 position = Vector2( 48, 36 )
 frames = SubResource( 17 )
 animation = "0"
-frame = 1
+frame = 2
 playing = true
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]

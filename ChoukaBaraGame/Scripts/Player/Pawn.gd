@@ -34,6 +34,7 @@ var initialPosition = {
 }
 
 func _ready():	
+	set_process(false)
 	position.y += (tile_size / 3.0) * initialPosition[initial_character_position].y_offset
 	position.x += (tile_size / 3.0) * initialPosition[initial_character_position].x_offset
 	# Adjust animation speed to match movement speed
@@ -55,9 +56,10 @@ func _process(_delta):
 	if tween.is_active():
 		return
 	if(not navigationPath.empty()):
-		if(moveCount == garaValue):
+		if(garaValue != -1 && moveCount == garaValue):
 			clearNavigationPath()
 			moveCount = 0
+			set_process(false)
 			emit_signal("movement_round_complete")
 			return
 		var navPoint = navigationPath[0]
@@ -76,6 +78,7 @@ func _process(_delta):
 				move("up")
 			moveCount += 1
 	else:
+		set_process(false)
 		moveCount = 0
 
 func removeFirstElementFromNavigationPath() -> void:
@@ -85,6 +88,8 @@ func clearNavigationPath():
 	navigationPath.resize(0)
 
 func set_navigationPath(value:PoolVector2Array) -> void:
+	if(value != null):
+		set_process(true)
 	navigationPath = value
 		
 func move(dir : String) -> void:
@@ -124,7 +129,7 @@ func unselect_pawn() -> void:
 
 func gotoHomeBase(pawn:Pawn):
 	var homebasePosition = pawn.get_parent().getHomebasePosition()	
-	yield(GameUtility.select_destination(100,pawn,homebasePosition,false),"completed")
+	yield(GameUtility.select_destination(-1,pawn,homebasePosition,false),"completed")
 
 func disableHitBox() -> void:
 	hitboxCollision.disabled = true
@@ -137,7 +142,9 @@ func enableHitBox(andGetHurt:bool) -> void:
 func _on_hurtbox_area_entered(areaEntered:Area2D):
 	var enteredPawn = areaEntered.get_parent()
 	var enteredPlayer = enteredPawn.get_parent()
-	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id() || ((self.get_parent().player_index + 1) % 4)  == PlayerInfo.active_player.player_index):
+	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id()):
+		return
+	if(((self.get_parent().player_index + 1) % 4)  == PlayerInfo.active_player.player_index):		
 		return
 	if(self.get_parent().get_instance_id() != enteredPlayer.get_instance_id()):
-		gotoHomeBase(self)
+		PlayerInfo.pawnHit = self

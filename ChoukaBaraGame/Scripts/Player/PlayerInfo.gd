@@ -9,6 +9,7 @@ func active_player_set(value:Player)->void:
 	emit_signal("player_changed",active_player)
 
 var garaList : Array = []
+var pawnHit:Pawn
 
 var playerDetails = {
 	 0: { "x_offset": 0,"y_offset":2, "texture": preload("res://Assets/Player/L.png") }
