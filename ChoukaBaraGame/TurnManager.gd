@@ -2,15 +2,9 @@ extends YSort
 
 class_name TurnManager
 
-signal turn_notification_complete
-signal turn_complete
-signal koude_roll_complete
-
 var goalPosition : Vector2 = Vector2(480,480)
-var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
-var turnNotifyPopup = preload("res://Scenes/TurnInfoPopup.tscn")
-var garaList : Array
-var popupInstance: AcceptDialog
+var turnNotifyPopup = preload("res://Scenes/Notification/TurnInfoPopup.tscn")
+
 var turnNotificationPopupInstance: AcceptDialog
 
 func _ready():
@@ -24,44 +18,23 @@ func sortPlayers(playerOne:Player,playerTwo:Player) -> bool:
 	return playerOne.player_index < playerTwo.player_index
 
 func play_turn() -> void:
-	notifyCurrentPlayer()
-	yield(self,"turn_notification_complete")
-	RollKoude()
-	yield(self,"koude_roll_complete")
-	yield(PlayerInfo.active_player,"pawnSelected")
-	PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",true)
-	GameUtility.select_destination(garaList,PlayerInfo.active_player.selectedPawn,goalPosition,true)	
-	yield(PlayerInfo.active_player.selectedPawn,"movement_complete")
-	PlayerInfo.active_player.selectedPawn.resetAnimation()
-	PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",false)	
-	PlayerInfo.active_player.selectedPawn.unselect_pawn()
+	yield(GameUtility.RollKoude(),"completed")
+	yield(startPawnMovement(),"completed")	
 	selectNextPlayer()
-	emit_signal("turn_complete")
 
-func notifyCurrentPlayer() -> void:
-	turnNotificationPopupInstance = turnNotifyPopup.instance()
-	turnNotificationPopupInstance.connect("confirmed",self,"_on_turnNotify_confirmed")
-	add_child(turnNotificationPopupInstance)
-	turnNotificationPopupInstance.popup_centered()
-	turnNotificationPopupInstance.Initialize(PlayerInfo.active_player)
-	
-func _on_turnNotify_confirmed() -> void:
-	turnNotificationPopupInstance.queue_free()
-	emit_signal("turn_notification_complete")
+func startPawnMovement()->void:
+	while !PlayerInfo.garaList.empty():
+		yield(PlayerInfo.active_player,"pawnSelected")
+		PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",true)
+		yield(GameUtility.select_destination(PlayerInfo.garaList.pop_front(),PlayerInfo.active_player.selectedPawn,goalPosition,true),"completed")		
+		yield(get_tree(), "idle_frame")
+		yield(GameUtility.checkPlayerHit(),"completed")
+		if(PlayerInfo.active_player.selectedPawn):
+			PlayerInfo.active_player.selectedPawn.resetAnimation()
+			PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",false)	
+			PlayerInfo.active_player.selectedPawn.unselect_pawn()
 
 func selectNextPlayer() -> void:
 	var next_battler_index: int = (PlayerInfo.active_player.get_index() + 1) % get_child_count()
 	PlayerInfo.active_player = get_child(next_battler_index)
 
-func RollKoude() -> void:
-	popupInstance = koudePopup.instance()
-	popupInstance.connect("confirmed",self,"_on_popup_confirmed")
-	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
-	add_child(popupInstance)
-
-func _on_popup_confirmed() -> void:
-	popupInstance.queue_free()
-	emit_signal("koude_roll_complete")
-	
-func _on_popup_gara_complete(list:Array):
-	garaList = list

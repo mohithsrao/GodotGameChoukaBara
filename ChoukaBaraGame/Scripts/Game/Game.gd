@@ -4,7 +4,4 @@ onready var turnManager: TurnManager = $TurnManager
 
 func _ready():
 	while true:
-		turnManager.play_turn()
-		yield(turnManager,"turn_complete")
-
-
+		yield(turnManager.play_turn(),"completed")

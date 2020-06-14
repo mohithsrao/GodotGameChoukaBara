@@ -12,7 +12,7 @@ onready var navigation = $Navigation2D
 onready var navigationPoly = $Navigation2D/NavigationPolygonInstance
 onready var homeBase = $HomeBase
 
-var playerScene = preload("res://Scenes/Player/Pawn.tscn")
+var pawnScene = preload("res://Scenes/Player/Pawn.tscn")
 var maxCharactersPerPlayer = 4
 
 var selectedPawn : Pawn setget selectedPawn_set, selectedPawn_get
@@ -30,7 +30,7 @@ func _ready():
 	homeBase.connect("area_entered",self,"_on_homeBase_area_entered")
 	
 	for playerIndex in range(0,maxCharactersPerPlayer):
-		var character = playerScene.instance()
+		var character = pawnScene.instance()
 		(character.get_node("Sprite") as Sprite).texture = PlayerInfo.playerDetails[player_index].texture
 		character.name =  "Player_" + str(player_index) + "_" + str(playerIndex)
 		character.initialSetup(speed,tile_size,playerIndex)
@@ -51,3 +51,4 @@ func allignNavigationNode() -> void:
 
 func getHomebasePosition() -> Vector2:
 	return homeBase.position
+

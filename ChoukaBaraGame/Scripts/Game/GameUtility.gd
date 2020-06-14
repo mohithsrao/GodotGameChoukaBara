@@ -1,21 +1,29 @@
 extends Node
 
+var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
+
 func getNavigationInstanceforSelectedCharactor(character : Player) -> Navigation2D:
 	var navigationInstance = character.get_node("Navigation2D")
 	return navigationInstance
 
-func select_destination(list : Array,pawn:Pawn,goalPosition:Vector2,canHit:bool) -> void:
-	for item in list:
-		pawn.call_deferred("disableHitBox")
-		var navigationInstance : Navigation2D = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player)
-		var path = navigationInstance.get_simple_path(pawn.position, goalPosition)
-		var normalizedPath = normalizeNavigationPath(path)
-		pawn.navigationPath = normalizedPath
-		pawn.garaValue = item
-		yield(pawn,"movement_round_complete")
-		if(canHit):
-			pawn.call_deferred("enableHitBox",true)
-	pawn.emit_signal("movement_complete")
+func select_destination(value : int,pawn:Pawn,goalPosition:Vector2,canHit:bool) -> void:
+	pawn.call_deferred("disableHitBox")
+	var navigationInstance : Navigation2D = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player)
+	var path = navigationInstance.get_simple_path(pawn.position, goalPosition)
+	var normalizedPath = normalizeNavigationPath(path)
+	pawn.navigationPath = normalizedPath
+	pawn.garaValue = value
+	yield(get_tree(), "idle_frame")
+	if(canHit):
+		yield(pawn,"movement_round_complete")		
+		pawn.call_deferred("enableHitBox",true)
+
+func checkPlayerHit() -> void:
+	if(PlayerInfo.pawnHit):
+		yield(PlayerInfo.pawnHit.gotoHomeBase(PlayerInfo.pawnHit),"completed")
+		yield(GameUtility.RollKoude(),"completed")
+		PlayerInfo.pawnHit = null
+	yield(get_tree(), "idle_frame")
 
 func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 	var resultArray = PoolVector2Array()
@@ -29,3 +37,14 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		resultArray.append(newPoint)
 	
 	return resultArray
+
+func RollKoude() -> void:
+	var popupInstance = koudePopup.instance()
+	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
+	get_parent().get_node("Game").add_child(popupInstance)
+	yield(popupInstance,"confirmed")
+	popupInstance.queue_free()
+
+func _on_popup_gara_complete(list:Array):
+	for item in list:
+		PlayerInfo.garaList.append(item)
