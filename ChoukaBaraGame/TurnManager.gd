@@ -28,7 +28,6 @@ func startPawnMovement()->void:
 		PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",true)
 		yield(GameUtility.select_destination(PlayerInfo.garaList.pop_front(),PlayerInfo.active_player.selectedPawn,goalPosition,true),"completed")		
 		yield(get_tree(), "idle_frame")
-		yield(GameUtility.checkPlayerHit(),"completed")
 		if(PlayerInfo.active_player.selectedPawn):
 			PlayerInfo.active_player.selectedPawn.resetAnimation()
 			PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",false)	

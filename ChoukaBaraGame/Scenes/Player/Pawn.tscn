@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Player/ryuk.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player/Pawn.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Player/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/StateMachine/PawnStateMachine/PawnStateMachine.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -103,3 +104,5 @@ anims/up = SubResource( 5 )
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+
+[node name="StateMachine" parent="." instance=ExtResource( 5 )]
