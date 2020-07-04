@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Gara/Gara.gd"
 }, {
+"base": "Node",
+"class": "IState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/PawnStateMachine/IState.gd"
+}, {
+"base": "Node",
+"class": "IStateMachine",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/PawnStateMachine/state_machine.gd"
+}, {
 "base": "CenterContainer",
 "class": "Koude",
 "language": "GDScript",
@@ -36,6 +46,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Gara": "",
+"IState": "",
+"IStateMachine": "",
 "Koude": "",
 "Pawn": "",
 "Player": "",

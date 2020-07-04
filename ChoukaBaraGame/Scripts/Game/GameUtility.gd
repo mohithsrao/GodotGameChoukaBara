@@ -18,13 +18,6 @@ func select_destination(value : int,pawn:Pawn,goalPosition:Vector2,canHit:bool) 
 		yield(pawn,"movement_round_complete")		
 		pawn.call_deferred("enableHitBox",true)
 
-func checkPlayerHit() -> void:
-	if(PlayerInfo.pawnHit):
-		yield(PlayerInfo.pawnHit.gotoHomeBase(PlayerInfo.pawnHit),"completed")
-		yield(GameUtility.RollKoude(),"completed")
-		PlayerInfo.pawnHit = null
-	yield(get_tree(), "idle_frame")
-
 func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 	var resultArray = PoolVector2Array()
 	for point in path:
