@@ -8,7 +8,8 @@ func _ready():
 	PlayerInfo.connect("player_changed",self,"_on_player_changed")
 
 func _on_player_changed(player:Player) -> void:
-	animSprite.animation = str(player.player_index)
+	if(player):
+		animSprite.animation = str(player.player_index)
 
 func _process(_delta):
 	moveList.visible = !PlayerInfo.garaList.empty()
