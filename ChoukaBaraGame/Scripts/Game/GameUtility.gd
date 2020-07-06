@@ -26,9 +26,9 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		var newPoint = Vector2(
 			 (modValueX * (PlayerInfo.active_player.tile_size)) + (PlayerInfo.active_player.tile_size / 2.0)
 			,(modValueY * (PlayerInfo.active_player.tile_size)) + (PlayerInfo.active_player.tile_size / 2.0))
-		
+
 		resultArray.append(newPoint)
-	
+
 	return resultArray
 
 #func RollKoude() -> void:

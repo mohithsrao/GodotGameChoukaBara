@@ -96,6 +96,7 @@ func _on_hurtbox_area_entered(areaEntered:Area2D):
 	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id()):
 		return
 	if(self.get_parent().player_index == PlayerInfo.active_player.player_index):
+		PlayerInfo.active_player.needsReRoll = true
 		return
 	if(self.get_parent().get_instance_id() != enteredPlayer.get_instance_id()):
 		pawnHit = true
