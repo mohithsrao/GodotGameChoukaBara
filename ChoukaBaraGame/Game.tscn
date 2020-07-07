@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Japaneese_Village_Background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://Scripts/Game/Game.gd" type="Script" id=4]
 [ext_resource path="res://TurnManager.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/HUD/Hud.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/StateMachine/GameStateMachine/GameStateManager.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/StateMachine/GameStateMachine/SelectNextPlayer.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/StateMachine/GameStateMachine/SelectPawn.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/StateMachine/GameStateMachine/MovePawn.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/StateMachine/GameStateMachine/CalculateGara.gd" type="Script" id=11]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -39,3 +44,20 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = 990.0
 margin_right = 1150.0
+
+[node name="GameStateManager" type="Node" parent="."]
+script = ExtResource( 7 )
+START_STATE = NodePath("SelectNextPlayer")
+OWNER = NodePath("../TurnManager")
+
+[node name="SelectNextPlayer" type="Node" parent="GameStateManager"]
+script = ExtResource( 8 )
+
+[node name="CalculateGara" type="Node" parent="GameStateManager"]
+script = ExtResource( 11 )
+
+[node name="SelectPawn" type="Node" parent="GameStateManager"]
+script = ExtResource( 9 )
+
+[node name="MovePawn" type="Node" parent="GameStateManager"]
+script = ExtResource( 10 )

@@ -93,9 +93,12 @@ func enableHitBox(andGetHurt:bool) -> void:
 func _on_hurtbox_area_entered(areaEntered:Area2D):
 	var enteredPawn = areaEntered.get_parent()
 	var enteredPlayer = enteredPawn.get_parent()
-	if(self.get_instance_id() == enteredPawn.get_instance_id() || self.get_parent().get_instance_id() == enteredPlayer.get_instance_id()):
+	var selfPlayer = self.get_parent()
+	if(self.get_instance_id() == enteredPawn.get_instance_id() 
+	|| selfPlayer.get_instance_id() == enteredPlayer.get_instance_id()):
 		return
 	if(self.get_parent().player_index == PlayerInfo.active_player.player_index):
 		return
-	if(self.get_parent().get_instance_id() != enteredPlayer.get_instance_id()):
+	if(selfPlayer.get_instance_id() != enteredPlayer.get_instance_id()):
 		pawnHit = true
+		PlayerInfo.active_player.needsReRoll = true

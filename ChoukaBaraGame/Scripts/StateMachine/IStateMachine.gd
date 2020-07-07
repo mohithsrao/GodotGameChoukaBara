@@ -20,7 +20,7 @@ export(NodePath) var OWNER
 var states_map = {}
 
 var states_stack = []
-var current_state : IState = null
+var current_state = null
 var _active = false setget set_active
 
 func set_active(value):
@@ -35,6 +35,7 @@ func _ready():
 	for child in get_children():
 		child.connect("finished", self, "_change_state")
 	owner = get_node(OWNER)
+	var owner1 = owner
 	initialize(START_STATE)
 
 func initialize(start_state):

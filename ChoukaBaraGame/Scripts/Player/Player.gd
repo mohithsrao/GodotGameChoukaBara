@@ -14,7 +14,7 @@ onready var homeBase = $HomeBase
 
 var pawnScene = preload("res://Scenes/Player/Pawn.tscn")
 var maxCharactersPerPlayer = 4
-
+var needsReRoll:bool = false
 var selectedPawn : Pawn setget selectedPawn_set, selectedPawn_get
 func selectedPawn_set(value) -> void:
 	selectedPawn = value

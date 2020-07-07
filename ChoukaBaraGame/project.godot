@@ -17,12 +17,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "IState",
 "language": "GDScript",
-"path": "res://Scripts/StateMachine/PawnStateMachine/IState.gd"
+"path": "res://Scripts/StateMachine/IState.gd"
 }, {
 "base": "Node",
 "class": "IStateMachine",
 "language": "GDScript",
-"path": "res://Scripts/StateMachine/PawnStateMachine/state_machine.gd"
+"path": "res://Scripts/StateMachine/IStateMachine.gd"
 }, {
 "base": "CenterContainer",
 "class": "Koude",

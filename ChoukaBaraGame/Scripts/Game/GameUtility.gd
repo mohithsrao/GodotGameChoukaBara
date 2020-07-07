@@ -1,6 +1,6 @@
 extends Node
 
-var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
+#var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
 
 func getNavigationInstanceforSelectedCharactor(character : Player) -> Navigation2D:
 	var navigationInstance = character.get_node("Navigation2D")
@@ -26,18 +26,18 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		var newPoint = Vector2(
 			 (modValueX * (PlayerInfo.active_player.tile_size)) + (PlayerInfo.active_player.tile_size / 2.0)
 			,(modValueY * (PlayerInfo.active_player.tile_size)) + (PlayerInfo.active_player.tile_size / 2.0))
-		
+
 		resultArray.append(newPoint)
-	
+
 	return resultArray
 
-func RollKoude() -> void:
-	var popupInstance = koudePopup.instance()
-	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
-	get_parent().get_node("Game").add_child(popupInstance)
-	yield(popupInstance,"confirmed")
-	popupInstance.queue_free()
-
-func _on_popup_gara_complete(list:Array):
-	for item in list:
-		PlayerInfo.garaList.append(item)
+#func RollKoude() -> void:
+#	var popupInstance = koudePopup.instance()
+#	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
+#	get_parent().get_node("Game").add_child(popupInstance)
+#	yield(popupInstance,"confirmed")
+#	popupInstance.queue_free()
+#
+#func _on_popup_gara_complete(list:Array):
+#	for item in list:
+#		PlayerInfo.garaList.append(item)
