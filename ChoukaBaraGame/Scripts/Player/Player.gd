@@ -13,7 +13,7 @@ onready var navigationPoly = $Navigation2D/NavigationPolygonInstance
 onready var homeBase = $HomeBase
 
 var pawnScene = preload("res://Scenes/Player/Pawn.tscn")
-var maxCharactersPerPlayer = 4
+var maxCharactersPerPlayer = 2
 var needsReRoll:bool = false
 var selectedPawn : Pawn setget selectedPawn_set, selectedPawn_get
 func selectedPawn_set(value) -> void:
@@ -37,6 +37,7 @@ func _ready():
 		character.position = character.position.snapped(Vector2.ONE * tile_size)
 		character.position.y = tile_size * PlayerInfo.playerDetails[player_index].y_offset
 		character.position.x = tile_size * PlayerInfo.playerDetails[player_index].x_offset
+		character.add_to_group(self.name)
 		add_child(character)
 
 func _on_homeBase_area_entered(area:Area2D):

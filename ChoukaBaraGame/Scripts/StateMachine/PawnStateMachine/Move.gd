@@ -38,6 +38,7 @@ func update(delta):
 	else:
 		set_process(false)
 		owner.moveCount = 0
+		emit_signal("finished", "idle")
 
 func move(dir : String) -> void:
 	owner.ray.cast_to = inputs[dir] * owner.tile_size
