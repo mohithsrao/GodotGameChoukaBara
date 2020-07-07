@@ -12,9 +12,3 @@ func enter(owner):
 		yield(PlayerInfo.active_player,"pawnSelected")
 		PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",true)
 		emit_signal("finished","MovePawn")
-
-#func update(_delta):
-#	#	When player hits a enemy pawn
-#	if(PlayerInfo.active_player && PlayerInfo.active_player.needsReRoll):
-#		emit_signal("finished","CalculateGara")
-#		PlayerInfo.active_player.needsReRoll = false
