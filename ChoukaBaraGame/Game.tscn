@@ -27,7 +27,7 @@ region_rect = Rect2( 0, 0, 992, 1024 )
 
 [node name="TurnManager" type="YSort" parent="."]
 script = ExtResource( 5 )
-NUMBER_OF_PLAYERS = 1
+NUMBER_OF_PLAYERS = 3
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 anchor_left = 1.0
