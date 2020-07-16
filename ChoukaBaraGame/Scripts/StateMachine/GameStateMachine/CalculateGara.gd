@@ -12,6 +12,7 @@ func RollKoude() -> void:
 	var popupInstance = koudePopup.instance()
 	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
 	get_parent().get_parent().add_child(popupInstance)
+	popupInstance.roll()
 	yield(popupInstance,"confirmed")
 	popupInstance.queue_free()
 
