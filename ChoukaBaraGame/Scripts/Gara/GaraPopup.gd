@@ -6,28 +6,45 @@ onready var koude01 = $VBoxContainer/HBoxContainer2/koude01
 onready var koude02 = $VBoxContainer/HBoxContainer2/koude02
 onready var koude03 = $VBoxContainer/HBoxContainer3/koude03
 onready var koude04 = $VBoxContainer/HBoxContainer3/koude04
-var addButton: Button
+var buttonRollAgain: Button
+var buttonSelectPawn: Button
+var buttonCentrePos: Vector2
+var buttonPrevPos: Vector2
 onready var okButton = get_ok()
-var okButtonPos: Vector2
-var okMarginLeft: float
-var okMarginRight: float
-var okMarginTop:float
-var okMarginBotton:float
+# var okButtonPos: Vector2
 
 var garaList : Array = []
 var list : Array = []
 var repeat : bool = true
 
 
+func initButtons():
+	#centre position for the button
+	buttonCentrePos.x = 309
+	buttonCentrePos.y = 0
+
+	buttonRollAgain = add_button("Roll Again!!",true,"roll_again")
+	buttonRollAgain.visible = false
+
+	buttonSelectPawn = add_button("Select Pawn", true)
+	buttonSelectPawn.visible = false
+
+	okButton.visible = false
+	# okButton.text = "Select Pawn"
+	# okButtonPos.x = 309 # button centering
+	# okButtonPos.y = 100 # button centering
+	# okButton.visible = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	okButton.text = "Select Pawn"
+	initButtons()
 	randomize()
 	var closeButton = get_close_button()
 	closeButton.visible = false
 	garaList.clear()
 	koude04.connect("roll_finished",self,"_on_koude_roll_finished")
 
+	
 func getState() -> bool:
 	#debug
 #	return true
@@ -40,13 +57,23 @@ func getState() -> bool:
 func _on_koude_roll_finished():
 	dialog_text =  update_gara_text()
 	if(repeat):
-		okButton.visible = false
-		if addButton:
-			addButton = add_button("Roll Again!!",true,"roll_again")
-			addButton.visible = true	
+		# okButton.visible = false
+		if buttonRollAgain:
+			buttonPrevPos = buttonRollAgain.rect_position
+			buttonRollAgain.visible = true	
+			buttonRollAgain.rect_position = buttonCentrePos
 	else:
-		okButton.visible = true
-		okButton.rect_position = okButtonPos
+		if buttonRollAgain:
+			buttonRollAgain.visible = false	
+			buttonRollAgain.rect_position = buttonPrevPos
+
+		if buttonSelectPawn:
+			buttonPrevPos = buttonSelectPawn.rect_position
+			buttonSelectPawn.visible = true
+
+		""" okButton.rect_position = okButtonPos
+		okButton.visible = true """
+		
 #		okButton.margin_bottom = okMarginBotton
 #		okButton.margin_right = okMarginRight
 #		okButton.margin_left = okMarginLeft
@@ -65,7 +92,7 @@ func update_gara_text() -> String:
 	
 func roll():
 	popup_centered()
-	okButtonPos = okButton.rect_position
+#	okButtonPos = okButton.rect_position
 #	okMarginBotton = okButton.margin_bottom
 #	okMarginRight = okButton.margin_right
 #	okMarginLeft = okButton.margin_left

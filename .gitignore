@@ -9,3 +9,6 @@ export_presets.cfg
 
 #Build and Release ignores
 Bin/
+
+# Git ignore
+.vscode/
