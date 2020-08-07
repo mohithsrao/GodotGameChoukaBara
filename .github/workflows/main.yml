@@ -21,7 +21,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     env: 
-      working-directory: /Bin/HTML/
+      working-directory: godotHtml
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -40,6 +40,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
+    - name: Create Build Directory
+      run: |
+        mkdir ${{ env.working-directory }}
+        cp -rv "/home/runner/.local/share/godot/builds/ChoukaBara HTML5" ${{ env.working-directory }} 
+
     - name: Deploy Game HTML5 Site
       if: success()
       uses: crazy-max/ghaction-github-pages@v2
