@@ -44,6 +44,7 @@ jobs:
       run: |
         mkdir ${{ env.working-directory }}
         cp -rv "/home/runner/.local/share/godot/builds/ChoukaBara HTML5" ${{ env.working-directory }} 
+        mv ${{ env.working-directory }}/ChoukaBara.html ${{ env.working-directory }}/Index.html
 
     - name: Deploy Game HTML5 Site
       if: success()
