@@ -8,9 +8,11 @@ class_name IState
 
 signal finished(next_state_name)
 
+var logic_root
+
 # Initialize the state. E.g. change the animation
-func enter(owner):
-	self.owner = owner
+func enter(logic_root):
+	self.logic_root = logic_root
 
 # Clean up the state. Reinitialize values like a timer
 func exit():
