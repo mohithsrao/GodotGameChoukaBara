@@ -26,8 +26,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo "Hello World!"
-        echo test, and deploy your project.
+    - name: Godot Export
+      uses: firebelley/godot-export@v2.4.0
+      with:
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.2.2/Godot_v3.2.2-stable_win64.exe.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.2.2/Godot_v3.2.2-stable_export_templates.tpz
+        relative_project_path: ./
+        generate_release_notes: true
+    
+    
