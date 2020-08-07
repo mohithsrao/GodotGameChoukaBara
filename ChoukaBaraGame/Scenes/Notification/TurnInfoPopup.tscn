@@ -4,7 +4,6 @@
 [ext_resource path="res://Scenes/Notification/TurnInfoPopup.gd" type="Script" id=2]
 
 [node name="TurnInfo" type="AcceptDialog"]
-visible = true
 margin_top = 20.0
 margin_right = 210.0
 margin_bottom = 130.0
@@ -22,7 +21,7 @@ anchor_bottom = 0.69
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = -1.90001
+margin_bottom = -1.9
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -30,7 +29,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 194.0
 margin_bottom = 14.0
-text = "Current turn is for player"
+text = "Player finished the game"
 align = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
