@@ -25,6 +25,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with: 
+        fetch-depth: 0
 
     - name: Godot Export
       uses: firebelley/godot-export@v2.4.0
@@ -36,4 +38,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-    
+    - name: Deploy Game HTML5 Site
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
+      with: 
+        target_branch: gh-pages
+        build_dir: ./Bin/HTML
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
