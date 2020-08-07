@@ -20,6 +20,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+    env: 
+      working-directory: ./Bin/HTML
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -43,6 +45,6 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v2
       with: 
         target_branch: gh-pages
-        build_dir: ./Bin/HTML
+        build_dir: ${{ env.working-directory }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
