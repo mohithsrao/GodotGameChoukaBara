@@ -19,3 +19,4 @@ func Initialize(player:Player) -> void:
 			sprite.texture = playerImage
 		else:
 			sprite.texture = defaultImage
+	popup_centered()
