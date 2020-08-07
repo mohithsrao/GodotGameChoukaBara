@@ -1,9 +1,10 @@
 extends IState
 
-func enter(owner):
-	.enter(owner)
-	if(owner.pawnHit):
-		owner.pawnHit = false;
-		var homebasePosition = owner.get_parent().getHomebasePosition()	
-		yield(GameUtility.select_destination(-1,owner,homebasePosition,false),"completed")
+func enter(logic_root):
+	.enter(logic_root)
+	var pawn = logic_root as Pawn
+	if(pawn.pawnHit):
+		pawn.pawnHit = false;
+		var homebasePosition = pawn.get_parent().getHomebasePosition()	
+		yield(GameUtility.select_destination(-1,pawn,false,homebasePosition),"completed")
 		emit_signal("finished", "move")
