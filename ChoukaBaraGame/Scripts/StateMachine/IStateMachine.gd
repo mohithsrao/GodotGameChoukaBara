@@ -20,8 +20,10 @@ export(NodePath) var OWNER
 var states_map = {}
 
 var states_stack = []
-var current_state = null
+var current_state : IState = null
 var _active = false setget set_active
+
+var logic_root
 
 func set_active(value):
 	_active = value
@@ -34,15 +36,14 @@ func set_active(value):
 func _ready():
 	for child in get_children():
 		child.connect("finished", self, "_change_state")
-	owner = get_node(OWNER)
-	var owner1 = owner
+	logic_root = get_node(OWNER)
 	initialize(START_STATE)
 
 func initialize(start_state):
 	set_active(true)
 	states_stack.push_front(get_node(start_state))
 	current_state = states_stack[0]
-	current_state.enter(owner)
+	current_state.enter(logic_root)
 
 func _input(event):
 	current_state.handle_input(event)
@@ -69,4 +70,4 @@ func _change_state(state_name):
 	emit_signal("state_changed", current_state)
 	
 	if state_name != "previous":
-		current_state.enter(owner)
+		current_state.enter(logic_root)
