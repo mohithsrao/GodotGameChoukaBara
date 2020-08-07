@@ -6,26 +6,28 @@ var inputs = {"right": Vector2.RIGHT,
 			"down": Vector2.DOWN}
 
 func exit():
-	owner.garaValue = 0;
-	owner.moveCount = 0;
+	var pawn = logic_root as Pawn
+	pawn.garaValue = 0;
+	pawn.moveCount = 0;
 
 func update(delta):
-	if owner.tween.is_active():
+	var pawn = logic_root as Pawn
+	if pawn.tween.is_active():
 		return
-	if(not owner.navigationPath.empty()):
-		if(owner.garaValue != -1 && owner.moveCount == owner.garaValue):
-			owner.clearNavigationPath()
-			owner.moveCount = 0
+	if(not pawn.navigationPath.empty()):
+		if(pawn.garaValue != -1 && pawn.moveCount == pawn.garaValue):
+			pawn.clearNavigationPath()
+			pawn.moveCount = 0
 			set_process(false)
-			owner.emit_signal("movement_round_complete")
+			pawn.emit_signal("movement_round_complete")
 			emit_signal("finished", "idle")
 			return
-		var navPoint = owner.navigationPath[0]
-		var distance_to_next_point = owner.global_position.distance_to(navPoint)
-		if(distance_to_next_point <= owner.tile_size/2.0):
-			owner.removeFirstElementFromNavigationPath()
+		var navPoint = pawn.navigationPath[0]
+		var distance_to_next_point = pawn.global_position.distance_to(navPoint)
+		if(distance_to_next_point <= pawn.tile_size/2.0):
+			pawn.removeFirstElementFromNavigationPath()
 		else:
-			var angleToDestination : = rad2deg(owner.global_position.angle_to_point(navPoint))
+			var angleToDestination : = rad2deg(pawn.global_position.angle_to_point(navPoint))
 			if(angleToDestination < 45 and angleToDestination >= - 45):
 				move("left")
 			if(angleToDestination < - 45 and angleToDestination >= - 45 * 3):
@@ -34,27 +36,30 @@ func update(delta):
 				move("right")
 			if(angleToDestination < 45 * 3 and angleToDestination >= 45):
 				move("up")
-			owner.moveCount += 1
+			pawn.moveCount += 1
 	else:
 		set_process(false)
-		owner.moveCount = 0
+		pawn.moveCount = 0
+		emit_signal("finished", "idle")
 
 func move(dir : String) -> void:
-	owner.ray.cast_to = inputs[dir] * owner.tile_size
-	owner.ray.force_raycast_update()
-	if !owner.ray.is_colliding():
-		owner.animationPlayer.play(dir)
+	var pawn = logic_root as Pawn
+	pawn.ray.cast_to = inputs[dir] * pawn.tile_size
+	pawn.ray.force_raycast_update()
+	if !pawn.ray.is_colliding():
+		pawn.animationPlayer.play(dir)
 		move_tween(inputs[dir])
 	
 func move_tween(dirVector : Vector2) -> void:
-	var _dummy0 = owner.tween.interpolate_property(owner
+	var pawn = logic_root as Pawn
+	var _dummy0 = pawn.tween.interpolate_property(pawn
 					,"position"
-					,owner.position
-					,owner.position + dirVector * owner.tile_size
-					,1.0/owner.speed
+					,pawn.position
+					,pawn.position + dirVector * pawn.tile_size
+					,1.0/pawn.speed
 					,Tween.TRANS_LINEAR
 					,Tween.EASE_IN_OUT)
-	var _dummy1 = owner.tween.start()
+	var _dummy1 = pawn.tween.start()
 
 
 

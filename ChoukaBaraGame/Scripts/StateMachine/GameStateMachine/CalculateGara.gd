@@ -3,7 +3,7 @@ extends IState
 var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
 
 func update(_delta):
-	if(get_tree().current_scene.has_node("/root/Game/GaraPopup")):
+	if(get_tree().current_scene.has_node("/root/Game/GaraPopup") or get_tree().current_scene.has_node("/root/Game/TurnInfo")):
 		return
 	yield(RollKoude(),"completed")
 	emit_signal("finished","SelectPawn")
