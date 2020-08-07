@@ -43,6 +43,8 @@ jobs:
     - name: Create Build Directory
       run: |
         mkdir ${{ env.working-directory }}
+        ls -ltr
+        pwd
         ls -ltr "/home/runner/.local/share/godot/builds/ChoukaBara HTML5"
         cd "/home/runner/.local/share/godot/builds/ChoukaBara HTML5"
         cp -v * ${{ env.working-directory }}
