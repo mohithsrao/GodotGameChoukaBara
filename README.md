@@ -1,3 +1,6 @@
+# Build Status:
+![Master](https://github.com/mohithsrao/GodotGameChoukaBara/workflows/CI/badge.svg)
+
 # GodotGame - ChoukaBara
 First game in Godot to learn the engine and create some game mechanics.
 
