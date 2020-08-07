@@ -1,9 +1,10 @@
 extends IState
 
-func enter(owner):
-	.enter(owner)
+func enter(logic_root):
+	.enter(logic_root)
 #	when player finishes the turn or cannot move any pawn  
 	if(PlayerInfo.garaList.empty()):
+		yield(get_tree().create_timer(0.5),"timeout")
 		if(PlayerInfo.active_player && PlayerInfo.active_player.needsReRoll):
 			PlayerInfo.active_player.needsReRoll = false
 			emit_signal("finished","CalculateGara")

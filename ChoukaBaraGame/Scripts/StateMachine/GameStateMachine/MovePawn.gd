@@ -1,7 +1,7 @@
 extends IState
 
-func enter(owner):
-	.enter(owner)
+func enter(logic_root):
+	.enter(logic_root)
 	if(not PlayerInfo.garaList.empty()):
 		yield(GameUtility.select_destination(PlayerInfo.garaList.pop_front(),PlayerInfo.active_player.selectedPawn,true),"completed")		
 		yield(get_tree(), "idle_frame")
