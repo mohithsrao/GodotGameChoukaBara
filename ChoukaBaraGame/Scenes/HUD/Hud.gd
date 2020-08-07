@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 onready var animSprite = $MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/AnimatedSprite
 onready var moveList = $MarginContainer/VBoxContainer2/VBoxContainer2/ItemList
