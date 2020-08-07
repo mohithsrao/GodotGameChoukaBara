@@ -47,7 +47,7 @@ jobs:
         pwd
         ls -ltr "/home/runner/.local/share/godot/builds/ChoukaBara HTML5"
         cd "/home/runner/.local/share/godot/builds/ChoukaBara HTML5"
-        cp -v * ${{ env.working-directory }}
+        cp -v * /home/runner/work/GodotGameChoukaBara/GodotGameChoukaBara/${{ env.working-directory }}
         cd -
         mv "${{ env.working-directory }}/ChoukaBara.html" "${{ env.working-directory }}/Index.html"
 
