@@ -1,15 +1,16 @@
 extends Node
 
-#var koudePopup = preload("res://Scenes/Gara/GaraPopup.tscn")
+var goalPosition : Vector2 = Vector2(480,480)
+var Group_Player = "gp_player"
 
 func getNavigationInstanceforSelectedCharactor(character : Player) -> Navigation2D:
 	var navigationInstance = character.get_node("Navigation2D")
 	return navigationInstance
 
-func select_destination(value : int,pawn:Pawn,goalPosition:Vector2,canHit:bool) -> void:
+func select_destination(value : int,pawn:Pawn,canHit:bool,destination:Vector2 = goalPosition) -> void:
 	pawn.call_deferred("disableHitBox")
 	var navigationInstance : Navigation2D = getNavigationInstanceforSelectedCharactor(PlayerInfo.active_player)
-	var path = navigationInstance.get_simple_path(pawn.position, goalPosition)
+	var path = navigationInstance.get_simple_path(pawn.position, destination)
 	var normalizedPath = normalizeNavigationPath(path)
 	pawn.navigationPath = normalizedPath
 	pawn.garaValue = value
@@ -30,14 +31,3 @@ func normalizeNavigationPath(path:PoolVector2Array) -> PoolVector2Array:
 		resultArray.append(newPoint)
 
 	return resultArray
-
-#func RollKoude() -> void:
-#	var popupInstance = koudePopup.instance()
-#	popupInstance.connect("gara_completed",self,"_on_popup_gara_complete")
-#	get_parent().get_node("Game").add_child(popupInstance)
-#	yield(popupInstance,"confirmed")
-#	popupInstance.queue_free()
-#
-#func _on_popup_gara_complete(list:Array):
-#	for item in list:
-#		PlayerInfo.garaList.append(item)
