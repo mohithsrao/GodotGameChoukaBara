@@ -7,8 +7,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -43,13 +41,10 @@ jobs:
     - name: Create Build Directory
       run: |
         mkdir ${{ env.working-directory }}
-        ls -ltr
-        pwd
-        ls -ltr "/home/runner/.local/share/godot/builds/ChoukaBara HTML5"
-        cd "/home/runner/.local/share/godot/builds/ChoukaBara HTML5"
+        cd "/home/runner/.local/share/godot/builds/ChoukaBara-HTML5"
         cp -v * /home/runner/work/GodotGameChoukaBara/GodotGameChoukaBara/${{ env.working-directory }}
         cd -
-        mv "${{ env.working-directory }}/ChoukaBara.html" "${{ env.working-directory }}/index.html"
+        mv ${{ env.working-directory }}/ChoukaBara.html ${{ env.working-directory }}/index.html
 
     - name: Deploy Game HTML5 Site
       if: success()
