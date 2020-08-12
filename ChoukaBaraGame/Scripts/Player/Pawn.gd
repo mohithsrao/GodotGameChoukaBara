@@ -33,6 +33,7 @@ var initialPosition = {
 	,2: { "x_offset": 2,"y_offset":1 }
 	,3: { "x_offset": 2,"y_offset":2 }
 }
+var currentLocation:int = 0
 
 func _ready():	
 	set_process(false)
@@ -101,4 +102,12 @@ func _on_hurtbox_area_entered(areaEntered:Area2D):
 		return
 	if(selfPlayer.get_instance_id() != enteredPlayer.get_instance_id()):
 		pawnHit = true
+		PlayerInfo.active_player.canEnterInnerCircle = true
 		PlayerInfo.active_player.needsReRoll = true
+
+func canMoveSelectedTurn(gara:int)-> bool:
+	if(PlayerInfo.active_player.canEnterInnerCircle):
+		return true;
+	elif (currentLocation + gara < GameUtility.distanceToInnerCircle):
+		return true
+	return false

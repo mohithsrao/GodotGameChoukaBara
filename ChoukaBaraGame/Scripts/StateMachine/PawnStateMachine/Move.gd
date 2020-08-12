@@ -15,6 +15,8 @@ func update(delta):
 	if pawn.tween.is_active():
 		return
 	if(not pawn.navigationPath.empty()):
+#		Gara Value will be -1 only when it is moving back to its Home base so in this case it needs to travel full distance
+#		without check for moveCount
 		if(pawn.garaValue != -1 && pawn.moveCount == pawn.garaValue):
 			pawn.clearNavigationPath()
 			pawn.moveCount = 0
@@ -37,6 +39,9 @@ func update(delta):
 			if(angleToDestination < 45 * 3 and angleToDestination >= 45):
 				move("up")
 			pawn.moveCount += 1
+#			garaValue is -1 only when pawn is moving to Home base after hit so no need to reduce the current value as it is set to 0 in Hit State
+			if(pawn.garaValue != -1):
+				pawn.currentLocation += 1
 	else:
 		set_process(false)
 		pawn.moveCount = 0

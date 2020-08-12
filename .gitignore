@@ -8,3 +8,6 @@ export.cfg
 
 #Build and Release ignores
 Bin/
+
+#VSCode-specific ignores
+.vscode/
