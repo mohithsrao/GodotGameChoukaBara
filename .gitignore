@@ -10,4 +10,4 @@ export.cfg
 Bin/
 
 #VSCode-specific ignores
-.vscode
+.vscode/
