@@ -2,6 +2,8 @@ extends Node
 
 var goalPosition : Vector2 = Vector2(480,480)
 var Group_Player = "gp_player"
+var distanceToGoal:int = 24
+var distanceToInnerCircle:int = 16 
 
 func getNavigationInstanceforSelectedCharactor(character : Player) -> Navigation2D:
 	var navigationInstance = character.get_node("Navigation2D")
