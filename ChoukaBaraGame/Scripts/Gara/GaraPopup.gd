@@ -18,7 +18,7 @@ var multiplier:float;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
+	randomize()	
 	if(is_Debug):
 		multiplier = 0.01
 	else:
@@ -28,6 +28,7 @@ func _ready():
 	garaList.clear()
 	koude04.connect("roll_finished",self,"_on_koude_roll_finished")
 	addButton.visible = false
+	var _error = connect("popup_hide",self,"_on_garapopup_hide")
 	popup_centered()
 	while repeat:
 		list.append(getState())
@@ -48,8 +49,7 @@ func _ready():
 			yield(self,"custom_action")
 	
 	addButton.visible = false
-	okButton.visible = true
-	emit_signal("gara_completed",garaList)
+	okButton.visible = true	
 
 func getState() -> bool:
 #	return true
@@ -73,3 +73,7 @@ func update_gara_text() -> String:
 	
 	text += scoreText
 	return text
+
+func _on_garapopup_hide():
+	emit_signal("gara_completed",garaList)
+	emit_signal("confirmed")

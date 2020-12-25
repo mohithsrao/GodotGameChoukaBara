@@ -44,7 +44,7 @@ func _ready():
 func _on_homeBase_area_entered(area:Area2D):
 	var pawn = area.get_parent()
 	pawn.call_deferred("disableHitBox")
-		
+
 func allignNavigationNode() -> void:
 	navigation.position = PlayerInfo.navigationData[player_index].position
 	navigation.rotation_degrees = PlayerInfo.navigationData[player_index].rotation
@@ -54,3 +54,10 @@ func allignNavigationNode() -> void:
 func getHomebasePosition() -> Vector2:
 	return homeBase.position
 
+func SetZIndex(bringFront:bool):
+	for child in get_children():
+		if child is Pawn:
+			if bringFront:
+				(child as Pawn).z_index = 1
+			else:
+				(child as Pawn).z_index = 0

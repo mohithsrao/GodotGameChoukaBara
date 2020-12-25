@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/Gara/GaraPopup.gd" type="Script" id=2]
 
 [node name="GaraPopup" type="AcceptDialog"]
+visible = true
 anchor_right = 0.646
 anchor_bottom = 0.656
 margin_right = -0.160034
@@ -31,7 +32,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 604.0
+margin_right = 707.0
 margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -41,17 +42,17 @@ __meta__ = {
 }
 
 [node name="koude01" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
-margin_right = 300.0
+margin_right = 351.0
 margin_bottom = 284.0
 
 [node name="koude02" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
-margin_left = 304.0
-margin_right = 604.0
+margin_left = 355.0
+margin_right = 707.0
 margin_bottom = 284.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 288.0
-margin_right = 604.0
+margin_right = 707.0
 margin_bottom = 572.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -61,10 +62,10 @@ __meta__ = {
 }
 
 [node name="koude03" parent="VBoxContainer/HBoxContainer3" instance=ExtResource( 1 )]
-margin_right = 300.0
+margin_right = 351.0
 margin_bottom = 284.0
 
 [node name="koude04" parent="VBoxContainer/HBoxContainer3" instance=ExtResource( 1 )]
-margin_left = 304.0
-margin_right = 604.0
+margin_left = 355.0
+margin_right = 707.0
 margin_bottom = 284.0
