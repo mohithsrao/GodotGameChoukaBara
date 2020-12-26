@@ -1,7 +1,6 @@
 name: Build Godot Project
 
 on:
-  push: {} # Runs on all Push
   pull_request: {} # Runs on all Pull-Request
 
 jobs:
@@ -16,7 +15,7 @@ jobs:
         with:
           lfs: true
 
-      - name: Build
+      - name: Build ${{ matrix.platform }}
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
         with:
@@ -88,7 +87,7 @@ jobs:
           path: ~/artifacts/windows
 
       - name: Create Pre-Release
-        id: create_release
+        id: create-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -107,7 +106,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          upload_url: ${{ steps.create-release.outputs.upload_url }} 
           asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}/ChoukaBara-Windows.tar
           asset_name: chouka-bara-windows.tar
           asset_content_type: application/zip
@@ -118,7 +117,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          upload_url: ${{ steps.create-release.outputs.upload_url }} 
           asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}/ChoukaBara-HTML5.tar
           asset_name: chouka-bara-html.tar
           asset_content_type: application/zip
