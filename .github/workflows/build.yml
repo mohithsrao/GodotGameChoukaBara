@@ -32,9 +32,9 @@ jobs:
           name: ${{ matrix.platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
 
-      - name: Extract release notes
+      - name: Extract Change Logs
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
 
       - name: Get Previous Release tag
         id: previous-tag
@@ -61,7 +61,7 @@ jobs:
           release_name: Release ${{ steps.bump-version.outputs.next-version }}
           body: |
             Changes in this Release
-              ${{ steps.extract-release-notes.outputs.release_notes }}
+              ${{ steps.extract-release-notes.outputs.changelog }}
           draft: false
           prerelease: true # Change here to make prerelease as the actual release 
 
