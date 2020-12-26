@@ -33,7 +33,7 @@ jobs:
       - name: Upload Artifact to Build
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.platform }}
+          name: ${{ matrix.platform }}.tar
           path: ${{ matrix.platform }}.tar
     
   Release:
