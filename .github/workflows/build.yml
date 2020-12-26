@@ -18,11 +18,14 @@ jobs:
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
         with:
-          name: example
+          name: ChoukaBara
           preset: ${{ matrix.platform }}
           debugMode: "true"
+          projectDir: "./ChoukaBaraGame/"
+          subdirectory: ${{ matrix.platform }}
+          package: "true"
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Client - ${{ matrix.platform }}
+          name: ${{ matrix.platform }} - Artifact
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
