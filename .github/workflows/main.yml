@@ -35,7 +35,6 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows/$EXPORT_NAME
-        # cd build/windows/$EXPORT_NAME
           godot -v --export "ChoukaBara-Windows" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
@@ -67,7 +66,6 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web/$EXPORT_NAME
-        # cd build/web/$EXPORT_NAME
           godot -v --export "ChoukaBara-HTML5" ../build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
