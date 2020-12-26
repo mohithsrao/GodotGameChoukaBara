@@ -26,6 +26,7 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          sudo apt install zip unzip
       - name: Windows Build
         run: |
           mkdir -v -p build/windows/$EXPORT_NAME
@@ -35,6 +36,10 @@ jobs:
           echo $(pwd)
 
           godot -v --export "ChoukaBara-Windows" ../build/windows/$EXPORT_NAME.exe
+      
+      - name: Create Zip files
+        run: zip -r windows.zip ./build/windows/
+      
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -56,6 +61,7 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          sudo apt install zip unzip
       - name: Web Build
         run: |
           mkdir -v -p build/web/$EXPORT_NAME
@@ -65,6 +71,10 @@ jobs:
           echo $(pwd)
 
           godot -v --export "ChoukaBara-HTML5" ../build/web/index.html
+      
+      - name: Create Tar files
+        run: zip -r web.zip ./build/web/
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
