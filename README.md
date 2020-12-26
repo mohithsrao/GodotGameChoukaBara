@@ -18,3 +18,11 @@ Reference Game Assets
 	http://untamed.wild-refuge.net/rmxpresources.php?characters
 	https://kenney.nl/assets/platformer-characters
 	https://kenney.nl/assets/toon-characters-1
+
+Used GitHub Actions
+	To Build Godot: https://github.com/marketplace/actions/build-godot
+	To Create Release: https://github.com/marketplace/actions/create-a-release
+	To Upload Artifacts to release: https://github.com/actions/upload-release-asset
+	To get change Log: https://github.com/marketplace/actions/generate-changelog 
+	To get Previous Release Tag: https://github.com/marketplace/actions/get-latest-release-of-repository
+	To increase version number: https://github.com/marketplace/actions/increment-semantic-version
