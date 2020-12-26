@@ -71,14 +71,14 @@ jobs:
           version-fragment: 'bug' # Change here to Update release version in future Possible options are [ major | feature | bug | alpha | beta | rc ] version Format: major.feature.bug-alpha|beta|rc
 
       - name: Download HTML Build Artifacts
-        id: downloaded-artifacts
+        id: downloaded-html-artifacts
         uses: actions/download-artifact@v2
         with:
           name: ChoukaBara-HTML5
           path: ~/artifacts/html
 
       - name: Download Windows Build Artifacts
-        id: downloaded-artifacts
+        id: downloaded-windows-artifacts
         uses: actions/download-artifact@v2
         with:
           name: ChoukaBara-Windows
@@ -98,13 +98,24 @@ jobs:
           draft: false
           prerelease: true # Change here to make prerelease as the actual release 
 
-      - name: Upload Pre-Release Asset
-        id: upload-release-asset 
+      - name: Upload Pre-Release Windows Asset
+        id: upload-windows-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ~/artifacts/
-          asset_name: chouka-bara.zip
+          asset_path: ${{ ${{steps.downloaded-windows-artifacts.outputs.download-path}} }}
+          asset_name: chouka-bara-windows.zip
+          asset_content_type: application/zip
+
+      - name: Upload Pre-Release HTML5 Asset
+        id: upload-html-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ${{ ${{steps.downloaded-html-artifacts.outputs.download-path}} }}
+          asset_name: chouka-bara-html.zip
           asset_content_type: application/zip
