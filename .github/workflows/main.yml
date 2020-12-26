@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: windows.zip
-          path: build/windows
+          path: windows.zip
   
   export-web:
     name: Web Export
@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: web.zip
-          path: build/web
+          path: web.zip
       # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
       - name: Install rsync
         run: |
