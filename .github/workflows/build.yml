@@ -28,13 +28,13 @@ jobs:
           package: true
 
       - name: 'Create Tar files'
-        run: tar -cvf ${{ matrix.platform }}.tar ${{ github.workspace }}/${{ steps.build.outputs.build }}/tar
+        run: tar -cvf ${{ matrix.platform }}.tar ${{ github.workspace }}/${{ steps.build.outputs.build }}tar
 
       - name: Upload Artifact to Build
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}/tar
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}tar
     
   Release:
     runs-on: ubuntu-latest
