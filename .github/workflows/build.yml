@@ -48,7 +48,7 @@ jobs:
         id: bump-version
         uses: christian-draeger/increment-semantic-version@1.0.2
         with:
-          current-version: ${{ steps.previous-tag.outputs.tag_name }}
+          current-version: ${{ steps.previous-tag.outputs.tag_name }} | cut -d'v' -f 2
           version-fragment: 'bug' # Change here to Update release version in future Possible options are [ major | feature | bug | alpha | beta | rc ] version Format: major.feature.bug-alpha|beta|rc
 
       - name: Create Pre-Release
