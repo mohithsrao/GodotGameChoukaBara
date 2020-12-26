@@ -108,7 +108,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}
+          asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}/ChoukaBara-Windows.tar
           asset_name: chouka-bara-windows.tar
           asset_content_type: application/zip
 
@@ -119,6 +119,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}
+          asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}/ChoukaBara-HTML5.tar
           asset_name: chouka-bara-html.tar
           asset_content_type: application/zip
