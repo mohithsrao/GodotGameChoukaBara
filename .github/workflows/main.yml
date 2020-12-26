@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
+name: Godot Project Export and Release
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -8,49 +6,153 @@ on:
   push:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  GODOT_VERSION: 3.2.3
+  EXPORT_NAME: Chouka-Bara
+
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    name: Build on Node ${{ matrix.os }}
-    # The type of runner that the job will run on
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    env: 
-      working-directory: godotHtml
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-      with: 
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          cd $EXPORT_NAME
+          godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: windows.zip
+          path: build/windows
+  
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          cd $EXPORT_NAME
+          godot -v --export "HTML5" ../build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web.zip
+          path: build/web
+      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
+      - name: Install rsync
+        run: |
+          apt-get update && apt-get install -y rsync
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build/web # The folder the action should deploy.
 
-    - name: Godot Export
-      uses: firebelley/godot-export@v2.4.0
-      with:
-        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.2.2/Godot_v3.2.2-stable_linux_headless.64.zip
-        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.2.2/Godot_v3.2.2-stable_export_templates.tpz
-        relative_project_path: ./ChoukaBaraGame/
-        generate_release_notes: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
-    - name: Create Build Directory
-      run: |
-        mkdir ${{ env.working-directory }}
-        cd "/home/runner/.local/share/godot/builds/ChoukaBara-HTML5"
-        cp -v * /home/runner/work/GodotGameChoukaBara/GodotGameChoukaBara/${{ env.working-directory }}
-        cd -
-        mv ${{ env.working-directory }}/ChoukaBara.html ${{ env.working-directory }}/index.html
+  Release:
+    runs-on: ubuntu-latest
+    needs: [export-windows,export-web]
+    steps: 
+      - name: Extract Change Logs
+        id: extract-release-notes
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issues: true
+          issuesWoLabels: true
+          pullRequests: true
+          prWoLabels: true
+          filterByMilestone: true
+          author: true
+            
+      - name: Get Previous Release tag
+        id: previous-tag
+        uses: InsonusK/get-latest-release@v1.0.1
+        with:
+          myToken: ${{ github.token }}
+          exclude_types: "draft"
+          view_top: 1
 
-    - name: Deploy Game HTML5 Site
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v2
-      with: 
-        target_branch: gh-pages
-        build_dir: ${{ env.working-directory }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Format Tag Name
+        id: formated-release-tag
+        run: |
+          echo ::set-output name=formated-tag::$(echo ${{ steps.previous-tag.outputs.tag_name }} | cut -d'v' -f 2)
+        
+      - name: Bump release version
+        id: bump-version
+        uses: christian-draeger/increment-semantic-version@1.0.2
+        with:
+          current-version: ${{ steps.formated-release-tag.outputs.formated-tag }}
+          version-fragment: 'feature' # Change here to Update release version in future Possible options are [ major | feature | bug | alpha | beta | rc ] version Format: major.feature.bug-alpha|beta|rc
+
+      - name: Download HTML Build Artifacts
+        id: downloaded-html-artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: web.zip
+          path: ~/artifacts/html
+
+      - name: Download Windows Build Artifacts
+        id: downloaded-windows-artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: windows.zip
+          path: ~/artifacts/windows
+
+      - name: Create Release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.bump-version.outputs.next-version }}
+          release_name: Release ${{ steps.bump-version.outputs.next-version }}
+          body: |
+            Changes in this Release
+              ${{ steps.extract-release-notes.outputs.changelog }}
+          draft: false
+          prerelease: false 
+
+      - name: Upload Pre-Release Windows Asset
+        id: upload-windows-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }} 
+          asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}/windows.zip
+          asset_name: chouka-bara-windows.zip
+          asset_content_type: application/zip
+
+      - name: Upload Pre-Release HTML5 Asset
+        id: upload-html-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }} 
+          asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}/web.zip
+          asset_name: chouka-bara-html.zip
+          asset_content_type: application/zip
