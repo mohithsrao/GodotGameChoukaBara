@@ -27,11 +27,14 @@ jobs:
           subdirectory: ${{ matrix.platform }}
           package: true
 
+      - name: 'Create Tar files'
+        run: tar -cvf ${{ matrix.platform }}.tar ${{ github.workspace }}/${{ steps.build.outputs.build }}/tar
+
       - name: Upload Artifact to Build
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}/tar
     
   Release:
     runs-on: ubuntu-latest
@@ -74,14 +77,14 @@ jobs:
         id: downloaded-html-artifacts
         uses: actions/download-artifact@v2
         with:
-          name: ChoukaBara-HTML5
+          name: ChoukaBara-HTML5.tar
           path: ~/artifacts/html
 
       - name: Download Windows Build Artifacts
         id: downloaded-windows-artifacts
         uses: actions/download-artifact@v2
         with:
-          name: ChoukaBara-Windows
+          name: ChoukaBara-Windows.tar
           path: ~/artifacts/windows
 
       - name: Create Pre-Release
@@ -106,7 +109,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
           asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}
-          asset_name: chouka-bara-windows.zip
+          asset_name: chouka-bara-windows.tar
           asset_content_type: application/zip
 
       - name: Upload Pre-Release HTML5 Asset
@@ -117,5 +120,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
           asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}
-          asset_name: chouka-bara-html.zip
+          asset_name: chouka-bara-html.tar
           asset_content_type: application/zip
