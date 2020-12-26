@@ -72,7 +72,7 @@ jobs:
 
           godot -v --export "ChoukaBara-HTML5" ../build/web/index.html
       
-      - name: Create Tar files
+      - name: Create Zip files
         run: zip -r web.zip ./build/web/
 
       - name: Upload Artifact
