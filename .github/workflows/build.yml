@@ -32,16 +32,38 @@ jobs:
           name: ${{ matrix.platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
 
+      - name: Extract release notes
+        id: extract-release-notes
+        uses: ffurrer2/extract-release-notes@v1
+
+      - name: Get Previous Release tag
+        id: previous-tag
+        uses: InsonusK/get-latest-release@v1.0.1
+        with:
+          myToken: ${{ github.token }}
+          exclude_types: "draft"
+          view_top: 1
+
+      - name: Bump release version
+        id: bump-version
+        uses: christian-draeger/increment-semantic-version@1.0.2
+        with:
+          current-version: ${{ steps.previous-tag.outputs.tag_name }}
+          version-fragment: 'bug' # Change here to Update release version in future Possible options are [ major | feature | bug | alpha | beta | rc ] version Format: major.feature.bug-alpha|beta|rc
+
       - name: Create Pre-Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.bump-version.outputs.next-version }}
+          release_name: Release ${{ steps.bump-version.outputs.next-version }}
+          body: |
+            Changes in this Release
+              ${{ steps.extract-release-notes.outputs.release_notes }}
           draft: false
-          prerelease: true
+          prerelease: true # Change here to make prerelease as the actual release 
 
       - name: Upload Pre-Release Asset
         id: upload-release-asset 
