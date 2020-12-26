@@ -22,12 +22,6 @@ jobs:
         with:
           lfs: true
       
-      - name: Change Base Directory
-        run: |
-          echo $(pwd)
-          cd ./ChoukaBaraGame
-          echo $(pwd)
-
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -35,6 +29,11 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows/$EXPORT_NAME
+
+          echo $(pwd)
+          cd ./ChoukaBaraGame
+          echo $(pwd)
+
           godot -v --export "ChoukaBara-Windows" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
@@ -53,12 +52,6 @@ jobs:
         with:
           lfs: true
       
-      - name: Change Base Directory
-        run: |
-          echo $(pwd)
-          cd ./ChoukaBaraGame
-          echo $(pwd)
-
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -66,6 +59,11 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web/$EXPORT_NAME
+          
+          echo $(pwd)
+          cd ./ChoukaBaraGame
+          echo $(pwd)
+
           godot -v --export "ChoukaBara-HTML5" ../build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
