@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [ChoukaBara-Windows] #, ChoukaBara-HTML5
+        platform: [ChoukaBara-Windows, ChoukaBara-HTML5]
     steps:
       - uses: actions/checkout@v2
         with:
