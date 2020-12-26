@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [ChoukaBara-Windows, ChoukaBara-HTML5]
+        platform: [ChoukaBara-Windows] #, ChoukaBara-HTML5
     steps:
       - uses: actions/checkout@v2
         with:
@@ -44,11 +44,17 @@ jobs:
           exclude_types: "draft"
           view_top: 1
 
+      - name: Format Tag Name
+        id: formated-release-tag
+        runs: formatedTag = "${{ steps.previous-tag.outputs.tag_name }}" | cut -d'v' -f 2
+        env:
+          formated-tag: $formatedTag
+
       - name: Bump release version
         id: bump-version
         uses: christian-draeger/increment-semantic-version@1.0.2
         with:
-          current-version: ${{ steps.previous-tag.outputs.tag_name }} | cut -d'v' -f 2
+          current-version: ${{ env.formated-tag }}
           version-fragment: 'bug' # Change here to Update release version in future Possible options are [ major | feature | bug | alpha | beta | rc ] version Format: major.feature.bug-alpha|beta|rc
 
       - name: Create Pre-Release
