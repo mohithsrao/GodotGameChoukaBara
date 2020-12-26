@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         platform: [ChoukaBara-Windows, ChoukaBara-HTML5]
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -31,7 +32,11 @@ jobs:
         with:
           name: ${{ matrix.platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
-
+    
+  Release:
+    runs-on: ubuntu-latest
+    needs: Godot
+    steps: 
       - name: Extract Change Logs
         id: extract-release-notes
         uses: heinrichreimer/github-changelog-generator-action@v2.1.1
@@ -79,6 +84,13 @@ jobs:
           draft: false
           prerelease: true # Change here to make prerelease as the actual release 
 
+      - name: Download Build Artifacts
+        id: downloaded-artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: chouka-bara-artifacts
+          path: ~/artifacts
+
       - name: Upload Pre-Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
@@ -86,6 +98,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ steps.build.outputs.artifact }}
-          asset_name: ${{ matrix.platform }}.zip
+          asset_path: ${{steps.downloaded-artifacts.outputs.download-path}}
+          asset_name: chouka-bara.zip
           asset_content_type: application/zip
