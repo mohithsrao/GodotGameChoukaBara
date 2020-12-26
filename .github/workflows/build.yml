@@ -25,7 +25,7 @@ jobs:
           debugMode: "true"
           projectDir: "./ChoukaBaraGame/"
           subdirectory: ${{ matrix.platform }}
-          package: "true"
+          package: true
 
       - name: Upload Artifact to Build
         uses: actions/upload-artifact@v2
@@ -105,7 +105,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}/ChoukaBara-Windows.zip
+          asset_path: ${{ steps.downloaded-windows-artifacts.outputs.download-path }}
           asset_name: chouka-bara-windows.zip
           asset_content_type: application/zip
 
@@ -116,6 +116,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}/ChoukaBara-HTML5.zip
+          asset_path: ${{ steps.downloaded-html-artifacts.outputs.download-path }}
           asset_name: chouka-bara-html.zip
           asset_content_type: application/zip
