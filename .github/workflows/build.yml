@@ -95,8 +95,8 @@ jobs:
           tag_name: v${{ steps.bump-version.outputs.next-version }}
           release_name: Release ${{ steps.bump-version.outputs.next-version }}
           body: |
-            Changes in this Release
-              echo $(<CHANGELOG.md)
+            Changes in this Release:
+              $(echo $(<CHANGELOG.md))
           draft: false
           prerelease: true # Change here to make prerelease as the actual release 
 
