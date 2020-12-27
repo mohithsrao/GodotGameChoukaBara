@@ -150,8 +150,8 @@ jobs:
           tag_name: v${{ steps.bump-version.outputs.next-version }}
           release_name: Release ${{ steps.bump-version.outputs.next-version }}
           body: |
-            Changes in this Release
-              ${{ steps.extract-release-notes.outputs.changelog }}
+            Changes in this Release:
+              $(echo $(<CHANGELOG.md))
           draft: false
           prerelease: false 
 
