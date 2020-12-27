@@ -96,7 +96,7 @@ jobs:
           release_name: Release ${{ steps.bump-version.outputs.next-version }}
           body: |
             Changes in this Release
-              ${{ steps.extract-release-notes.outputs.changelog }}
+              echo $(<CHANGELOG.md)
           draft: false
           prerelease: true # Change here to make prerelease as the actual release 
 
