@@ -149,9 +149,7 @@ jobs:
         with:
           tag_name: v${{ steps.bump-version.outputs.next-version }}
           release_name: Release ${{ steps.bump-version.outputs.next-version }}
-          body: |
-            Changes in this Release:
-              $(echo $(<CHANGELOG.md))
+          body_path: CHANGELOG.md
           draft: false
           prerelease: false 
 
