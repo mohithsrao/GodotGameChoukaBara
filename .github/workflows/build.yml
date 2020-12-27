@@ -86,6 +86,9 @@ jobs:
           name: ChoukaBara-Windows.tgz
           path: ~/artifacts/windows
 
+      - name: Printing md file  
+        run: echo $(<CHANGELOG.md)
+
       - name: Create Pre-Release
         id: create-release
         uses: actions/create-release@v1
