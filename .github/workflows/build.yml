@@ -94,9 +94,7 @@ jobs:
         with:
           tag_name: v${{ steps.bump-version.outputs.next-version }}
           release_name: Release ${{ steps.bump-version.outputs.next-version }}
-          body: |
-            Changes in this Release
-              ${{ steps.extract-release-notes.outputs.changelog }}
+          body_path: CHANGELOG.md
           draft: false
           prerelease: true # Change here to make prerelease as the actual release 
 
