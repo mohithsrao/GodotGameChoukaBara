@@ -1,5 +1,5 @@
 # Build Status:
-![Master](https://github.com/mohithsrao/GodotGameChoukaBara/workflows/CI/badge.svg)
+![Godot Project Export and Release](https://github.com/mohithsrao/GodotGameChoukaBara/workflows/Godot%20Project%20Export%20and%20Release/badge.svg)
 
 [Playable Link](https://mohithsrao.github.io/GodotGameChoukaBara/)
 
