@@ -2,7 +2,8 @@ extends IState
 
 func enter(logic_root):
 	.enter(logic_root)
-	if(not PlayerInfo.garaList.empty() && PlayerInfo.active_player.selectedPawn.canMoveSelectedTurn(PlayerInfo.garaList.front())):
+	var canMoveResult = PlayerInfo.active_player.selectedPawn.canMoveSelectedTurn(PlayerInfo.garaList.front())
+	if(not PlayerInfo.garaList.empty() && (canMoveResult as bool)):
 		yield(GameUtility.select_destination(PlayerInfo.garaList.pop_front(),PlayerInfo.active_player.selectedPawn,true),"completed")		
 		yield(get_tree(), "idle_frame")
 #	else:
