@@ -7,6 +7,8 @@ signal pawn_unselected
 
 signal movement_round_complete
 
+var notification_scene = preload("res://Scenes/HUD/NotifiationText.tscn")
+
 onready var tween : Tween = $Tween
 onready var ray : RayCast2D = $RayCast2D
 onready var animationPlayer : AnimationPlayer = $AnimationPlayer
@@ -15,6 +17,7 @@ onready var hitboxCollision = $Hitbox/CollisionShape2D
 onready var hitbox = $Hitbox
 onready var hurtbox = $Hurtbox
 onready var hurtboxCollision = $Hurtbox/CollisionShape2D
+onready var notificationRoot = $NotificationRoot
 
 var pawnHit = false
 var speed : int = 2
@@ -75,7 +78,7 @@ func resetAnimation() -> void:
 	
 func select_pawn(pawn:Pawn) -> void:
 	PlayerInfo.active_player.selectedPawn = pawn
-	sprite.scale = Vector2(1.5,1.5)
+	sprite.scale = Vector2(1.5,1.5)	
 	emit_signal("pawn_selected")
 
 func unselect_pawn() -> void:
@@ -105,9 +108,23 @@ func _on_hurtbox_area_entered(areaEntered:Area2D):
 		PlayerInfo.active_player.canEnterInnerCircle = true
 		PlayerInfo.active_player.needsReRoll = true
 
-func canMoveSelectedTurn(gara:int)-> bool:
-	if(PlayerInfo.active_player.canEnterInnerCircle):
-		return true;
-	elif (currentLocation + gara < GameUtility.distanceToInnerCircle):
-		return true
-	return false
+func canMoveSelectedTurn(gara:int, showNotification: bool = true)-> bool:
+	var positionToBeMoved = currentLocation + gara
+	var notification = ""
+	var result = true
+	if(not PlayerInfo.active_player.canEnterInnerCircle && not (positionToBeMoved <= GameUtility.distanceToGoal)):
+		notification = "Cannot enter goal as steps is greaer than goal distance"
+		result = false
+	elif (not (positionToBeMoved < GameUtility.distanceToInnerCircle)):
+		notification = "Cannot enter inner circle as Player HIT not performed"
+		result = false
+	
+	if (showNotification && not notification.empty()):
+		showNotification(notification)
+	
+	return result
+
+func showNotification(notificationText:String):
+	var notification_instance = notification_scene.instance()
+	notification_instance.notificationString = notificationText
+	notificationRoot.add_child(notification_instance)

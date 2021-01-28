@@ -2,11 +2,9 @@ extends IState
 
 func enter(logic_root):
 	.enter(logic_root)
-	if(not PlayerInfo.garaList.empty() && PlayerInfo.active_player.selectedPawn.canMoveSelectedTurn(PlayerInfo.garaList.front())):
+	if(canEnter()):
 		yield(GameUtility.select_destination(PlayerInfo.garaList.pop_front(),PlayerInfo.active_player.selectedPawn,true),"completed")		
 		yield(get_tree(), "idle_frame")
-#	else:
-#		Update HUD to display error for not able to enter Inner Circle
 		
 	emit_signal("finished","SelectPawn")
 
@@ -15,3 +13,12 @@ func exit():
 		PlayerInfo.active_player.selectedPawn.resetAnimation()
 		PlayerInfo.active_player.selectedPawn.call_deferred("enableHitBox",false)	
 		PlayerInfo.active_player.selectedPawn.unselect_pawn()
+
+func canEnter() -> bool:
+	var activePlayer = PlayerInfo.active_player
+	var canSelectedPawnMoveResult = activePlayer.selectedPawn.canMoveSelectedTurn(PlayerInfo.garaList.front())
+	var canPlayerMoveAnyPawnResult = activePlayer.canPlayerMoveAnyPawn(PlayerInfo.garaList)
+	if(not PlayerInfo.garaList.empty() && (canSelectedPawnMoveResult as bool)):
+		return true
+	
+	return false

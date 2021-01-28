@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-08-12T13:42:27.474Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="4fxdgmPnW4So-5a0aoeq" compressed="false" version="13.6.2" type="device" pages="3">
+<mxfile host="app.diagrams.net" modified="2021-01-28T19:13:51.136Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="W9YtHvQqLXB0j9mgT-9t" compressed="false" version="14.1.9" type="device" pages="6">
   <diagram name="ObjectStructure" id="52a04d89-c75d-2922-d76d-85b35f80e030">
-    <mxGraphModel dx="1022" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -71,7 +71,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="4XE_h-SoMfbQiYLsG42J" name="GameStateMachine">
-    <mxGraphModel dx="1022" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="AYsLdjAZY5YQVhehcRy6-0" />
         <mxCell id="AYsLdjAZY5YQVhehcRy6-1" parent="AYsLdjAZY5YQVhehcRy6-0" />
@@ -187,6 +187,194 @@
         </mxCell>
         <mxCell id="L-U8QV9hk-rFL4ZtFjXs-2" value="Hit" style="rounded=1;whiteSpace=wrap;html=1;" parent="pHmQsXQUb6NY9mhHEkNk-1" vertex="1">
           <mxGeometry x="80" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="vGo4Yeqk4l3dR5qmGDXU" name="Pawns">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-0" />
+        <mxCell id="aq5a7foPqDb5BdkIQm09-1" parent="aq5a7foPqDb5BdkIQm09-0" />
+        <mxCell id="aq5a7foPqDb5BdkIQm09-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-2" target="aq5a7foPqDb5BdkIQm09-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-2" target="aq5a7foPqDb5BdkIQm09-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-2" value="Basic Pawn" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="40" y="280" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-3" target="aq5a7foPqDb5BdkIQm09-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="310" />
+              <mxPoint x="600" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-3" target="aq5a7foPqDb5BdkIQm09-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-3" target="aq5a7foPqDb5BdkIQm09-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-3" target="aq5a7foPqDb5BdkIQm09-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-3" target="aq5a7foPqDb5BdkIQm09-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="aq5a7foPqDb5BdkIQm09-3" target="aq5a7foPqDb5BdkIQm09-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-3" value="Jodi Pawn" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="480" y="270" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-4" value="Can move for all gara&#39;s" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="200" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-6" value="Can move for only 2, 4 and 8" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="640" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-9" value="Can exist in both Inner and Outer circle" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="200" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-11" value="Can exist only in Inner circle" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="640" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-13" value="Made up of 2 Basic Pawn&#39;s" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="640" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-15" value="Can be formed if player decides in the inner circle" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="640" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-17" value="Can be broken if enemy player lands on the same square and in the next run moves from the square&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="640" y="360" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="aq5a7foPqDb5BdkIQm09-18" value="Blocks Enemy pawns from moving ahead without sitting on the square first&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="640" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_OoUpGKl8ar8liOY-Ouv-0" value="" style="shape=internalStorage;whiteSpace=wrap;html=1;backgroundOutline=1;dx=20;dy=40;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="40" y="440" width="310" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="_OoUpGKl8ar8liOY-Ouv-1" value="IPawn" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="175" y="450" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_OoUpGKl8ar8liOY-Ouv-2" value="CanMoveForGara(gara:int)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="70" y="490" width="270" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_OoUpGKl8ar8liOY-Ouv-3" value="PerformJodi(jodiPawn:IPawn)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="70" y="550" width="270" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_OoUpGKl8ar8liOY-Ouv-4" value="CanPlayersPassthrough(pawn:IPawn)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="70" y="520" width="270" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_OoUpGKl8ar8liOY-Ouv-5" value="BreakJodi()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="70" y="580" width="270" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="WafwMz-rgQyLNCPNDYZT-0" value="" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="_OoUpGKl8ar8liOY-Ouv-0" target="_OoUpGKl8ar8liOY-Ouv-0">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="680" as="sourcePoint" />
+            <mxPoint x="210" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WafwMz-rgQyLNCPNDYZT-1" value="PawnHit" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+          <mxGeometry x="70" y="610" width="270" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="rTT1WxivqNH40j1sE37v" name="Turn">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-0" />
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-1" parent="Ie62jY-RDFpaxm8rjB0u-0" />
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-2" target="Ie62jY-RDFpaxm8rjB0u-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-2" value="Start turn when player is chosen&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="240" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-3" target="Ie62jY-RDFpaxm8rjB0u-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-3" value="Calculate the Gara for the current turn" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="360" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-4" target="Ie62jY-RDFpaxm8rjB0u-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-4" value="Check if the gara can be executed for the player,&lt;br&gt;&lt;br&gt;1) if the player has Jodi are the Gara correct&lt;br&gt;&lt;br&gt;2) can player make valid moves with gara acquired" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="480" y="40" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-7" target="Ie62jY-RDFpaxm8rjB0u-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-7" value="Choose pawn to move" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="680" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-9" target="Ie62jY-RDFpaxm8rjB0u-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="280" />
+              <mxPoint x="760" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-9" value="Move the Pawn" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="680" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-10" target="Ie62jY-RDFpaxm8rjB0u-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-10" value="Record the movement in a TurnList for storing" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="510" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-13" target="Ie62jY-RDFpaxm8rjB0u-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-13" value="Save the TurnList&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="360" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-15" target="Ie62jY-RDFpaxm8rjB0u-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-15" value="Finish Turn&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="240" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Ie62jY-RDFpaxm8rjB0u-1" source="Ie62jY-RDFpaxm8rjB0u-17" target="Ie62jY-RDFpaxm8rjB0u-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ie62jY-RDFpaxm8rjB0u-17" value="Select Player" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="Ie62jY-RDFpaxm8rjB0u-1">
+          <mxGeometry x="80" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="jWsZgF0B7wPN8wS5nowv" name="Pawn-Sight">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-0" />
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-1" parent="kuxQWRNMx_pQ7o7Knns6-0" />
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="kuxQWRNMx_pQ7o7Knns6-1" source="kuxQWRNMx_pQ7o7Knns6-2" target="kuxQWRNMx_pQ7o7Knns6-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-2" value="Pawn Selected" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="kuxQWRNMx_pQ7o7Knns6-1">
+          <mxGeometry x="40" y="80" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="kuxQWRNMx_pQ7o7Knns6-1" source="kuxQWRNMx_pQ7o7Knns6-3" target="kuxQWRNMx_pQ7o7Knns6-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-3" value="Based on Gara and position in the game board the Collision detection should change shape" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="kuxQWRNMx_pQ7o7Knns6-1">
+          <mxGeometry x="200" y="80" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kuxQWRNMx_pQ7o7Knns6-5" value="When the Collision detects enemies pass through detection should take place" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="kuxQWRNMx_pQ7o7Knns6-1">
+          <mxGeometry x="360" y="80" width="120" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
