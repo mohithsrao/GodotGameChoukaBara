@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/HomeBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Player/CheckPlayerTurnValidity.gd" type="Script" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
 resource_local_to_scene = true
@@ -18,3 +19,6 @@ script = ExtResource( 1 )
 navpoly = SubResource( 1 )
 
 [node name="HomeBase" parent="." instance=ExtResource( 2 )]
+
+[node name="CheckPlayerTurnValidity" type="Node" parent="."]
+script = ExtResource( 3 )

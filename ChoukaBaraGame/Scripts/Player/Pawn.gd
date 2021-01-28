@@ -108,7 +108,7 @@ func _on_hurtbox_area_entered(areaEntered:Area2D):
 		PlayerInfo.active_player.canEnterInnerCircle = true
 		PlayerInfo.active_player.needsReRoll = true
 
-func canMoveSelectedTurn(gara:int)-> bool:
+func canMoveSelectedTurn(gara:int, showNotification: bool = true)-> bool:
 	var positionToBeMoved = currentLocation + gara
 	var notification = ""
 	var result = true
@@ -119,7 +119,7 @@ func canMoveSelectedTurn(gara:int)-> bool:
 		notification = "Cannot enter inner circle as Player HIT not performed"
 		result = false
 	
-	if (not notification.empty()):
+	if (showNotification && not notification.empty()):
 		showNotification(notification)
 	
 	return result

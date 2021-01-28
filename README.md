@@ -10,6 +10,8 @@ The game to be created is an old indian board game called Chouka-Bara
 
 The game is going to be in 2D and built in the godot Game engine
 
+This project uses GUT(Godot Unit Test) plugin fom the Asset Liberary, Install The Plugin from AssetLib after loading the project to run Unit Tests  
+
 Reference Project 
 
 	https://kidscancode.org/godot_recipes/2d/grid_movement/
