@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-01-28T18:59:21.339Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="4l7traM0CBK8zcGove7U" compressed="false" version="14.1.9" type="device" pages="6">
+<mxfile host="app.diagrams.net" modified="2021-01-28T19:13:51.136Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="W9YtHvQqLXB0j9mgT-9t" compressed="false" version="14.1.9" type="device" pages="6">
   <diagram name="ObjectStructure" id="52a04d89-c75d-2922-d76d-85b35f80e030">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
@@ -273,7 +273,13 @@
         <mxCell id="_OoUpGKl8ar8liOY-Ouv-5" value="BreakJodi()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
           <mxGeometry x="70" y="580" width="270" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="_OoUpGKl8ar8liOY-Ouv-6" value="BreakJodi()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
+        <mxCell id="WafwMz-rgQyLNCPNDYZT-0" value="" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="aq5a7foPqDb5BdkIQm09-1" source="_OoUpGKl8ar8liOY-Ouv-0" target="_OoUpGKl8ar8liOY-Ouv-0">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="680" as="sourcePoint" />
+            <mxPoint x="210" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WafwMz-rgQyLNCPNDYZT-1" value="PawnHit" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="aq5a7foPqDb5BdkIQm09-1">
           <mxGeometry x="70" y="610" width="270" height="20" as="geometry" />
         </mxCell>
       </root>
