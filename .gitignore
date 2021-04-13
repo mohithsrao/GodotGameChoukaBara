@@ -11,3 +11,6 @@ Bin/
 
 #VSCode-specific ignores
 .vscode/
+
+#test specific ignores
+**/results.xml
