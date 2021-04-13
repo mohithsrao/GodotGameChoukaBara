@@ -65,7 +65,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "WAT", "gut", "imjp94.yafsm" )
+enabled=PoolStringArray( "WAT", "imjp94.yafsm" )
 
 [input]
 
