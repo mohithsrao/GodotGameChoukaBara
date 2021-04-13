@@ -3,6 +3,9 @@ name: Build Godot Project
 on:
   pull_request: {} # Runs on all Pull-Request
 
+env:
+  GODOT_VERSION: 3.2.3
+
 jobs:
   Godot:
     runs-on: ubuntu-latest
@@ -34,10 +37,29 @@ jobs:
         with:
           name: ${{ matrix.platform }}.tgz
           path: ${{ matrix.platform }}.tgz
-    
-  Release:
+
+  Test:
     runs-on: ubuntu-latest
     needs: Godot
+    steps: 
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          apt-get install -y zip unzip
+
+      - name: Goto Godot Project directory
+        run: |
+          cd ./ChoukaBaraGame
+          echo $(pwd)
+
+      - name: Run Tests
+        run: |
+          godot addons/WAT/cli.tscn -run_all
+
+  Release:
+    runs-on: ubuntu-latest
+    needs: Test
     steps: 
       - name: Extract Change Logs
         id: extract-release-notes

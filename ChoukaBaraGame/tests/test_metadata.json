@@ -1,3 +1,16 @@
 {
+	"res://tests/integration/game.integration.test.gd": {
+		"path": "res://tests/integration/game.integration.test.gd",
+		"tags": [
 
+		],
+		"passing": true
+	},
+	"res://tests/unit/game.test.gd": {
+		"path": "res://tests/unit/game.test.gd",
+		"tags": [
+
+		],
+		"passing": true
+	}
 }
