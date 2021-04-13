@@ -19,11 +19,6 @@ config/name="ChoukaBaraGame"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-PlayerInfo="*res://Scripts/Player/PlayerInfo.gd"
-GameUtility="*res://Scripts/Game/GameUtility.gd"
-
 [debug]
 
 gdscript/warnings/exclude_addons=false
@@ -79,6 +74,11 @@ down={
 2d_physics/layer_2="Homebase"
 2d_physics/layer_3="Hit"
 2d_physics/layer_4="Hurt"
+
+[locale]
+
+translations=PoolStringArray( "res://Assets/LocalizationLanguage.en.translation" )
+locale_filter=[ 0, [ "en" ] ]
 
 [rendering]
 
