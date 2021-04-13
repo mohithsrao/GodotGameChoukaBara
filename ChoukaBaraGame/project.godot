@@ -8,50 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "Gara",
-"language": "GDScript",
-"path": "res://Scripts/Gara/Gara.gd"
-}, {
-"base": "Node",
-"class": "IState",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/IState.gd"
-}, {
-"base": "Node",
-"class": "IStateMachine",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/IStateMachine.gd"
-}, {
-"base": "CenterContainer",
-"class": "Koude",
-"language": "GDScript",
-"path": "res://Scripts/Gara/Koude.gd"
-}, {
-"base": "Area2D",
-"class": "Pawn",
-"language": "GDScript",
-"path": "res://Scripts/Player/Pawn.gd"
-}, {
-"base": "Node",
-"class": "Player",
-"language": "GDScript",
-"path": "res://Scripts/Player/Player.gd"
-}, {
-"base": "YSort",
-"class": "TurnManager",
-"language": "GDScript",
-"path": "res://TurnManager.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Gara": "",
-"IState": "",
-"IStateMachine": "",
-"Koude": "",
-"Pawn": "",
-"Player": "",
-"TurnManager": ""
+
 }
 
 [application]
@@ -67,6 +26,7 @@ GameUtility="*res://Scripts/Game/GameUtility.gd"
 
 [debug]
 
+gdscript/warnings/exclude_addons=false
 gdscript/completion/autocomplete_setters_and_getters=true
 gdscript/warnings/unused_class_variable=true
 gdscript/warnings/unsafe_property_access=true
@@ -81,6 +41,10 @@ window/size/height=960
 window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "gut" )
 
 [input]
 
