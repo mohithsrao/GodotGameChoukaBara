@@ -62,7 +62,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          godot --path $(pwd) addons/WAT/cli.tscn -run_all
+          godot -v --path $(echo $(pwd)) addons/WAT/cli.tscn -run_all
 
   Release:
     runs-on: ubuntu-latest
