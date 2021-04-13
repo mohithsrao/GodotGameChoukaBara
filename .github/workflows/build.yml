@@ -55,14 +55,12 @@ jobs:
         with:
           lfs: true
       
-      - name: Goto Godot Project directory
+      - name: Run Tests
         run: |
           cd ./ChoukaBaraGame
           echo $(pwd)
 
-      - name: Run Tests
-        run: |
-          godot -v --path . addons/WAT/cli.tscn -run_all
+          godot -v addons/WAT/cli.tscn -run_all
 
   Release:
     runs-on: ubuntu-latest
