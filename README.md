@@ -28,5 +28,5 @@ The game is going to be in 2D and built in the godot Game engine
 	To increase version number: https://github.com/marketplace/actions/increment-semantic-version
 
 #Addons Used
-	WAT - Unit Testing Framework for unit testing
+	(WAT - Unit Testing Framework)[https://wat.readthedocs.io/en/latest/pages/getting_started/introduction.html] for unit testing
 	gd-YAFSM for using Finite State Machines
