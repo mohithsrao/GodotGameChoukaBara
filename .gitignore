@@ -2,6 +2,7 @@
 # Godot-specific ignores
 .import/
 export.cfg
+logs
 
 # Mono-specific ignores
 .mono/
@@ -11,3 +12,6 @@ Bin/
 
 #VSCode-specific ignores
 .vscode/
+
+#test specific ignores
+**/results.xml
