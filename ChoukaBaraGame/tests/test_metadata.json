@@ -12,5 +12,19 @@
 
 		],
 		"passing": true
+	},
+	"res://tests/unit/Resources/SignalResource/SignalResource.test.gd": {
+		"path": "res://tests/unit/Resources/SignalResource/SignalResource.test.gd",
+		"tags": [
+
+		],
+		"passing": true
+	},
+	"res://tests/unit/Scenes/Environment/Tile/Tile.test.gd": {
+		"path": "res://tests/unit/Scenes/Environment/Tile/Tile.test.gd",
+		"tags": [
+
+		],
+		"passing": true
 	}
 }
