@@ -29,4 +29,7 @@ The game is going to be in 2D and built in the godot Game engine
 
 #Addons Used
 	(WAT - Unit Testing Framework)[https://wat.readthedocs.io/en/latest/pages/getting_started/introduction.html] for unit testing
+		- to run tests go to godot engins installed localton and execute th command 
+			godot.windows.opt.tools.64.exe -v --path <Path to project.godot>  "<Path to project.godot>\addons\WAT\cli.tscn" -run_all
+		- Example "godot.windows.opt.tools.64.exe -v --path "D:\Godot\Projects\ChouksBara\GodotGameChoukaBara\ChoukaBaraGame"  "D:\Godot\Projects\ChouksBara\GodotGameChoukaBara\ChoukaBaraGame\addons\WAT\cli.tscn" -run_all"
 	gd-YAFSM for using Finite State Machines
