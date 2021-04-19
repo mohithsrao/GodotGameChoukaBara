@@ -4,9 +4,10 @@
 [ext_resource path="res://Resources/GameBoards/5x5GameBoard.tres" type="Resource" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 0, 0 )
+extents = Vector2( 96, 96 )
 
 [node name="Tile" type="Area2D"]
+position = Vector2( 96, 96 )
 input_pickable = false
 monitorable = false
 script = ExtResource( 1 )
