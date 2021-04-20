@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Resources/GameBoards/GameBoard.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+BoardName = ""
+BoardDimension = 5
+HomeBaseCountOuterCircle = {
+1: Vector2( 2, 0 ),
+2: Vector2( 4, 2 ),
+3: Vector2( 2, 4 ),
+4: Vector2( 0, 2 )
+}
+HomeBaseCountInnerCircle = {
+
+}
+Goal = Vector2( 2, 2 )
+TileSize = Vector2( 96, 96 )

@@ -9,50 +9,83 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Gara",
+"base": "Resource",
+"class": "EditorValidationStringConstants",
 "language": "GDScript",
-"path": "res://Scripts/Gara/Gara.gd"
+"path": "res://Resources/StringResource/EditorValidationStringConstants.gd"
 }, {
-"base": "Node",
-"class": "IState",
+"base": "Resource",
+"class": "GameBoard",
 "language": "GDScript",
-"path": "res://Scripts/StateMachine/IState.gd"
+"path": "res://Resources/GameBoards/GameBoard.gd"
 }, {
-"base": "Node",
-"class": "IStateMachine",
+"base": "Tile",
+"class": "GoalTile",
 "language": "GDScript",
-"path": "res://Scripts/StateMachine/IStateMachine.gd"
+"path": "res://Scenes/Environment/Tile/GoalTile.gd"
 }, {
-"base": "CenterContainer",
-"class": "Koude",
+"base": "Tile",
+"class": "HomeTile",
 "language": "GDScript",
-"path": "res://Scripts/Gara/Koude.gd"
+"path": "res://Scenes/Environment/Tile/HomeTile.gd"
 }, {
 "base": "Area2D",
 "class": "Pawn",
 "language": "GDScript",
-"path": "res://Scripts/Player/Pawn.gd"
+"path": "res://Scenes/Pawn/Pawn.gd"
+}, {
+"base": "Resource",
+"class": "SignalResource",
+"language": "GDScript",
+"path": "res://Resources/SignalResource/SignalResource.gd"
+}, {
+"base": "Area2D",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://Scenes/Environment/Tile/Tile.gd"
 }, {
 "base": "Node",
-"class": "Player",
+"class": "TileManager",
 "language": "GDScript",
-"path": "res://Scripts/Player/Player.gd"
+"path": "res://Scenes/Environment/TileManager/TileManager.gd"
 }, {
-"base": "YSort",
-"class": "TurnManager",
+"base": "Reference",
+"class": "WAT",
 "language": "GDScript",
-"path": "res://TurnManager.gd"
+"path": "res://addons/WAT/namespace.gd"
+}, {
+"base": "Node",
+"class": "WATTest",
+"language": "GDScript",
+"path": "res://addons/WAT/core/test/test.gd"
 } ]
 _global_script_class_icons={
-"Gara": "",
-"IState": "",
-"IStateMachine": "",
-"Koude": "",
+"EditorValidationStringConstants": "",
+"GameBoard": "",
+"GoalTile": "",
+"HomeTile": "",
 "Pawn": "",
-"Player": "",
-"TurnManager": ""
+"SignalResource": "",
+"Tile": "",
+"TileManager": "",
+"WAT": "",
+"WATTest": ""
 }
+
+[WAT]
+
+Test_Directory="res://tests"
+Results_Directory="res://tests"
+Test_Metadata_Directory="res://tests"
+Tags=PoolStringArray( "Unit", "Integration" )
+Window_Size=Vector2( 1280, 720 )
+Minimize_Window_When_Running_Tests=false
+Port=6008
+Default_Launch=0
+Run_All_Tests=Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"unicode":0,"echo":false,"script":null)
+
+Auto_Refresh_Tests=true
+Display=8
 
 [application]
 
@@ -60,13 +93,9 @@ config/name="ChoukaBaraGame"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-PlayerInfo="*res://Scripts/Player/PlayerInfo.gd"
-GameUtility="*res://Scripts/Game/GameUtility.gd"
-
 [debug]
 
+gdscript/warnings/exclude_addons=false
 gdscript/completion/autocomplete_setters_and_getters=true
 gdscript/warnings/unused_class_variable=true
 gdscript/warnings/unsafe_property_access=true
@@ -81,6 +110,10 @@ window/size/height=960
 window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "WAT", "imjp94.yafsm" )
 
 [input]
 
@@ -115,6 +148,11 @@ down={
 2d_physics/layer_2="Homebase"
 2d_physics/layer_3="Hit"
 2d_physics/layer_4="Hurt"
+
+[locale]
+
+translations=PoolStringArray( "res://Assets/LocalizationLanguage.en.translation" )
+locale_filter=[ 0, [ "en" ] ]
 
 [rendering]
 
