@@ -3,6 +3,7 @@ HomeTile class is derived from base class Tile
 The Use of this class is to define all the features needed in home base
 """
 extends Tile
+class_name HomeTile
 
 func _ready():
 	signalResource.connect_signal("pawn_entered",self,"_on_pawn_entered")

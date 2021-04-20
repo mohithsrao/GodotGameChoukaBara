@@ -26,5 +26,12 @@
 
 		],
 		"passing": false
+	},
+	"res://tests/unit/Scenes/Environment/TileManager/TileManager.test.gd": {
+		"path": "res://tests/unit/Scenes/Environment/TileManager/TileManager.test.gd",
+		"tags": [
+
+		],
+		"passing": true
 	}
 }
